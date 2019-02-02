@@ -6,6 +6,7 @@
 }
 .fontth {
     font-family: 'Prompt', sans-serif;
+    font-weight: thin;
 }
 /* .font-icon{
     font-family: 'Prompt', sans-serif;
@@ -70,12 +71,23 @@ h1, h2, h3, h4, h5{
     position: absolute;
     /* bottom:0px; */
 }
+
 .navbar-toggler{
-    background-color: #7bbefd
+    background-color: #7bbefd !important;
 }
-ul {
-    list-style-type: none;
+ul{
+    list-style-type: none ;
   }
+.nav-logo{
+    height: 50px;
+}
+.center-pages{
+    position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-right: -50%;
+        transform: translate(-50%, -50%)
+}
 .pagebg{
     /* background-image: url('../assets/bg/bg1.png'); */
 }
@@ -502,4 +514,9 @@ ul {
 }
 .box-display-phone{
     display: none;
+}
+.card-show-home{
+    width: 75%;
+    height: auto;
+    /* background-image: url("../assets/banner3.png"); */
 }

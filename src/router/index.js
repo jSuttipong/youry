@@ -14,6 +14,7 @@ import Order from '@/components/Order'
 import OrderCreate from '@/components/OrderCreate'
 import OrderBill from '@/components/OrderBill'
 import CreatePhotobook from '@/components/CreatePhotobook'
+import PageNotFound from '@/components/PageNotFound'
 
 
 Vue.use(Router)
@@ -28,12 +29,6 @@ export default new Router({
       component: Home,
       props: true
     },
-    // {
-    //   path: '/Home',
-    //   name: 'HomeContent',
-    //   component: HomeContent,
-    //   props: true
-    // },
     {
       path: '/Signin',
       name: 'Signin',
@@ -100,23 +95,9 @@ export default new Router({
       component: CreatePhotobook,
       props: true
     },
-    { path: '*', redirect: '/' }
+    { path: '*', component: PageNotFound, }
     
     
   ]
 })
-// const routes = routerOptions.map(route => {
-//   return {
-//     path: route.path,
-//     component: () => import(`@/components/${route.component}.vue`),
-//     meta: route.meta
-//   }
-// })
-// const routes = [
-//   { path: '/Home', component: Home},
-//   { path: '/HomeContent', component: HomeContent}
-// ]
-// const router = new VueRouter({
-//   routes
-// })
 

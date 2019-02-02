@@ -12,6 +12,9 @@
     .fs24{
         font-size: 16px !important;
     }
+    .nav-logo{
+        height: 30px !important;
+    }
     .flowbox {
         background: #9CC7FF;
         width: 180px !important;
@@ -29,5 +32,9 @@
       }
       .box-display-phone{
           display: inline !important;
+      }
+      .card-show-home{
+        width: 100% !important;
+        height: auto;
       }
   }

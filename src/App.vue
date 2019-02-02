@@ -6,13 +6,13 @@
       <b-container style="padding-top:0;padding-bottom:5px">
         <b-navbar-toggle target="nav_collapse"></b-navbar-toggle>
         <b-navbar-brand >
-          <router-link to="/"><img src="./assets/logo.png" style="height:50px;"/></router-link>
+          <router-link to="/"><img src="./assets/logo.png" class="nav-logo"/></router-link>
         </b-navbar-brand>
         <b-collapse is-nav id="nav_collapse" class="fontth">
-          <router-link to="/" class="mr-3">หน้าแรก </router-link>
-          <router-link to="/Product" class="mr-3">สินค้า </router-link>
-          <router-link to="/" class="mr-3">ราคา </router-link>
-          <router-link to="/" class="mr-3">เกี่ยวกับเรา </router-link>
+          <li style="list-style: none; "><router-link to="/" class="mr-3">หน้าแรก </router-link></li>
+          <li style="list-style: none; "><router-link to="/Product" class="mr-3">สินค้า </router-link></li>
+          <li style="list-style: none; "><router-link to="#" class="mr-3">ราคา </router-link></li>
+          <li style="list-style: none; "><router-link to="#" class="mr-3">เกี่ยวกับเรา </router-link></li>
           <!-- <b-navbar-nav>
             <b-nav-item href="#">Home</b-nav-item>
             <b-nav-item href="#">Showcase</b-nav-item>
@@ -50,7 +50,7 @@
       <router-view/>
     </div>
     <!-- Footer*********************************************** -->
-    <div class="footer fontth cwhite" style="bottom:0; position:relative; padding-top:1px">
+    <div class="footer fontth cwhite pb-2" style=" position:relative; padding-top:1px">
       <b-container >
         <b-row class="mt-5" >
           <b-col md="4">

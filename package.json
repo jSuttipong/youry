@@ -25,10 +25,13 @@
     "vue-google-autocomplete": "^1.1.0",
     "vue-loading-overlay": "^3.1.1",
     "vue-monthly-picker": "^0.2.5",
+    "vue-mouse-parallax": "^0.9.2",
+    "vue-parallaxy": "^1.1.1",
     "vue-router": "^3.0.1",
     "vue-session": "^1.0.0",
     "vue-upload-multiple-image": "^1.1.2",
-    "vue2-google-maps": "^0.10.5"
+    "vue2-google-maps": "^0.10.5",
+    "vuesax": "^3.8.16"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

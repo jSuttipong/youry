@@ -6,7 +6,7 @@
             <img class="theme-banner" src="../assets/theme/modern.jpg" alt="">
         </div> -->
         <div class="box-example ">
-          <b-container class="">
+          <b-container>
             <b-row>
               <b-col>
                 <b-carousel id="carousel1"
@@ -30,7 +30,7 @@
               <b-col>
                 <h1 class="mt-5 cwhite">ตัวอย่าง</h1>
                 <p class="fs24 cwhite">นี่เป็นตัวอย่างการแสดงผล AR บนการ์ดงานแต่ง โดยจะแสดงผลปุ่มที่สามารถกดเพื่อดูข้อมูลเช่น ข้อมูลสถานที่จัดงาน ข้อมูลการติดต่อ อีกทั้งสามารถแสดงวีดีโอที่คุณต้องการให้เล่นบนหน้าการ์ดได้ผ่านแอพพลิเคชั้น Youry</p>
-                <p class="cwhite">ดาวน์โหลดได้ที่</p>
+                <p class="cwhite">ดาวน์โหลดแอปพลิเคชั่นได้ที่ Google Playstore</p>
                 <router-link to="https://play.google.com"><img src="../assets/gplogo.png" style="width:30%;background-color:white;border-radius:5px;padding:5px;position:relative" alt=""></router-link>
                 <b-col>
                   <img src="../assets/qrcode.jpeg" class="mt-3" style="width:25%;position:relative;margin-left:-10px">
@@ -41,7 +41,7 @@
         </div>
         <b-container >
           <div class="work-area">
-            <div class="layout-area" >
+            <!-- <div class="layout-area" >
                 <h3 class="center pt-3">เลือกจำนวนปุ่มที่จะแสดง</h3>
               <div v-for="layout in layout" :key="layout.lid" class="box-on-layout" >
                 <img :src="layout.layoutImg" class="left layout-selected" >
@@ -49,8 +49,9 @@
                 <div class="text-on-layout" >{{layout.btn}}</div>
               </div>
               </div>
-            </div>
-            <div class="inputData-area" >
+            </div> -->
+            <h3 class="center mt-3">อัพโหลดรูปพื้นหลังที่จะให้ARแสดงผล</h3>
+            <div class="inputData-area mt-4" >
               <div v-if="!image">
                   <form ref="marker" class="input-none" enctype="multipart/form-data">
                     <label for="markerUpload" class="box-upload mt-5 mb-5" style="display: flex; justify-content: center;">

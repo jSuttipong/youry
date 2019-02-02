@@ -1,11 +1,16 @@
 <template>
-  <div class="background-home">
+<!-- class="background-home" -->
+  <div >
+    <parallax fixed style="position:absolute;">
+    <img src="../assets/bg/bgpara.gif">
+  </parallax>
     <div>
   <b-container fluid>
   <b-row>
       <b-col md="1">
       </b-col>
-      <b-col>
+      <!-- style="background-color:#333;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);" -->
+      <b-col >
         <b-row>
           <b-col md="6" class="fontth fs24 cwhite">
             <h1 class="mt-5">Youry คืออะไร?</h1>
@@ -19,14 +24,20 @@
             <p>สำหรับท่านที่ไม่เข้าใจว่าAR คือะไร <a href="#" class="cred">คลิกเลย</a></p>
           </b-col>
           <!-- <b-col md="1"></b-col> -->
-          <b-col md="6" left><img src="../assets/banner1.png" height="" width="100%" class="mt-5"></b-col>
+          <b-col md="6" left>
+            <parallax-container>
+            <parallax-element :parallaxStrength="-15" :type="'depth'">
+                <img src="../assets/banner3.png" class="mt-3 card-show-home">
+            </parallax-element>
+          </parallax-container>
+            </b-col>
         </b-row>
         <p class="fontth fs32 cwhite">สั่งสินค้าได้ง่ายๆเพียงแค่</p>
         <b-row>
           <div v-for="(item) in items" class="fontth cwhite ar-for-sample" :key="item.id">
             <b-col>
               <div class="flowbox">
-                <h5>{{item.numFlow}}</h5>
+                {{item.numFlow}}
             <br>
             <img :src="item.iconFlow">
             <br>
@@ -62,17 +73,17 @@
         <h1 class="cwhite mt-5">AR Test</h1>
         <p class="fs24 mt-3">คุณสามารถนำโทรศัพท์ของคุณที่มีแอปพลิเคชั่น Youry มาสแกนเพื่อดู AR
         </p>
-        <div class="center">
-          <p> <img src="../assets/qrcode.jpeg" style="width:150px; height:150px;">
-            ทดลองใช้AR ดาวน์โหลดได้ที่</p>
-            <img src="../assets/gplogo.png" style="width:auto; height:24px;">
+        <div class="center pb-3">
+          <img src="../assets/qrcode.jpeg" style="width:150px; height:150px;">
+              ทดลองใช้AR ดาวน์โหลดได้ที่
+          <img src="../assets/gplogo.png" style="width:auto; height:24px;background-color:#fff;padding:1px;border-radius:5px">
         </div>
 
       </b-container>
     </div>
-    <div class="fontth" style="height: auto">
-      <b-container class="ar-for-sample">
-        <h1 class=" mt-5 center">ทดลองสแกน AR ได้ที่นี่</h1>
+    <div class="fontth" style="height: auto;background-color:#fff">
+      <b-container class="ar-for-sample pb-5">
+        <h1 class=" pt-5 center">ทดลองสแกน AR ได้ที่นี่</h1>
         <b-row>
           <b-col>
             <h2 class="mt-5">ตัวอย่าง AR Cover Book</h2>
@@ -106,10 +117,14 @@
 </template>
 <script>
 /* eslint-disable */
+import Parallax from 'vue-parallaxy'
 import HomeContent from '@/components/HomeContent'
 // import {userChack} from '@/components/Signin'
   export default {
     props: ["userData","userSignin"],
+    components: {
+      Parallax
+    },
     name: 'Home',
     // props:['userChack'],
     data() {
@@ -118,7 +133,7 @@ import HomeContent from '@/components/HomeContent'
         items: [{
             numFlow: '1',
             iconFlow: require('../assets/flowicon/icon1.png'),
-            nameFlow: 'เลือกสินค้าของคุณ'
+            nameFlow: 'เลือกการ์ดหรือ Photobook'
           },
           {
             numFlow: '2',
@@ -128,12 +143,12 @@ import HomeContent from '@/components/HomeContent'
           {
             numFlow: '3',
             iconFlow: require('../assets/flowicon/icon3.png'),
-            nameFlow: 'อัพโหลดและเขียนข้อความที่ต้องการ'
+            nameFlow: 'อัพโหลดรูปภาพและวีดีโอของคุณ'
           },
           {
             numFlow: '4',
             iconFlow: require('../assets/flowicon/icon4.png'),
-            nameFlow: 'ชำระเงิน'
+            nameFlow: 'ตรวจสอบและชำระเงิน'
           },
           // {
           //   numFlow: '5',
@@ -143,7 +158,7 @@ import HomeContent from '@/components/HomeContent'
           {
             numFlow: '6',
             iconFlow: require('../assets/flowicon/icon6.png'),
-            nameFlow: 'รอดำเนินงานจนเสร็จสิ้น'
+            nameFlow: 'รอทีมงานติดต่อไปเมื่อเสร็จสิ้น'
           },
         ],
         productList: [{
