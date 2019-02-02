@@ -70,6 +70,9 @@ h1, h2, h3, h4, h5{
     position: absolute;
     /* bottom:0px; */
 }
+.navbar-toggler{
+    background-color: #7bbefd
+}
 ul {
     list-style-type: none;
   }

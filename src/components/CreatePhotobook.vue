@@ -137,7 +137,7 @@
 
 import Signin from '@/components/Signin'
 import Loading from 'vue-loading-overlay';
-import FreeTransform from 'vue-free-transform'
+// import FreeTransform from 'vue-free-transform'
 import {gmapApi} from 'vue2-google-maps'
 var numeral = require('numeral');
 const axios = require('axios');
@@ -145,7 +145,7 @@ const axios = require('axios');
     props: ["Layouts"],
     name: 'CreatePhotobook',
     components: {
-      FreeTransform,
+      // FreeTransform,
       Signin,
       Loading,
     },

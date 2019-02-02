@@ -8,7 +8,7 @@ import router from './router'
 import BootstrapVue from 'bootstrap-vue'
 // import HomeContent from '@/component/HomeContent.vue'
 import VueSession from 'vue-session'
-import FreeTransform from 'vue-free-transform'
+// import FreeTransform from 'vue-free-transform'
 // import { VueSpinners } from '@saeris/vue-spinners'
 import VueGoodTablePlugin from 'vue-good-table';
 import * as VueGoogleMaps from 'vue2-google-maps'
@@ -17,7 +17,7 @@ import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 
 Vue.use(VueSession)
-Vue.use(FreeTransform)
+// Vue.use(FreeTransform)
 // Vue.use(VueSpinners)
 Vue.use(VueGoodTablePlugin);
 Vue.use(VueAwesomeSwiper, /* { default global options } */)

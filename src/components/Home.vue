@@ -1,7 +1,7 @@
 <template>
   <div class="background-home">
     <div>
-  <b-container>
+  <b-container fluid>
   <b-row>
       <b-col md="1">
       </b-col>

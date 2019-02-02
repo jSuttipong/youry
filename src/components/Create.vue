@@ -239,7 +239,7 @@
 
 import Signin from '@/components/Signin'
 import Loading from 'vue-loading-overlay';
-import FreeTransform from 'vue-free-transform'
+// import FreeTransform from 'vue-free-transform'
 import {gmapApi} from 'vue2-google-maps'
 import VueGoogleAutocomplete from "vue-google-autocomplete";
 
@@ -249,7 +249,7 @@ const axios = require('axios');
     props: ["Layouts"],
     name: 'app',
     components: {
-      FreeTransform,
+      // FreeTransform,
       Signin,
       Loading,
       VueGoogleAutocomplete
