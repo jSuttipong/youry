@@ -69,6 +69,7 @@
                       id="markerUpload"
                       ref="markerUpload"
                       @change="onFileChange"
+                      accept=".png,.jpg,.jpeg,.gif,.tif"
                     >
                     </form>
                     </div>
@@ -97,6 +98,7 @@
                           id="vdoUpload"
                           ref="vdoUpload"
                           @change="onFileChangeToVideo"
+                          accept=".avi,.flv,.mov,.mp4,.wmv.,.3gp,.mpg"
                         >
                       </form>
                     </div>
@@ -158,7 +160,7 @@
                             <h5 class="text-on-btn-upload">
                               <i class="fas fa-upload"></i>
                             </h5>
-                            <input type="file" ref="gallerysData" name="gallerys[]" id="filesToUpload" @change="setDataGallerys" multiple="multiple">
+                            <input type="file" ref="gallerysData" name="gallerys[]" id="filesToUpload" @change="setDataGallerys" multiple="multiple" accept=".png,.jpg,.jpeg,.gif,.tif">
                           </label>
                         </form>
                       </div>
@@ -574,6 +576,7 @@ const axios = require('axios');
               .then((result) => {
               console.log(result)
               console.log('sccess')
+              console.log('pushData',result.data)
               this.$router.push( {name:'OrderBill',params: { orderData: result.data}})
               this.isLoading = false
           })

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Prompt:400,700');
+@import url('https://fonts.googleapis.com/css?family=Prompt:200,300,400,700');
 @import 'vue-loading-overlay/dist/vue-loading.css';
 @import 'vue-good-table/dist/vue-good-table.css';
 .con1364{
@@ -6,7 +6,7 @@
 }
 .fontth {
     font-family: 'Prompt', sans-serif;
-    font-weight: thin;
+    font-weight : 200 !important;
 }
 /* .font-icon{
     font-family: 'Prompt', sans-serif;
@@ -16,23 +16,28 @@ h1, h2, h3, h4, h5{
 }
 
 .fs24{
-    font-size: 24px;
+    font-size: 1.5555rem ;
+    font-weight : 200 !important;
+    
+}
+.fwl{
+    font-weight : 300 !important;
 }
 .fs32{
     font-size: 32px;
 }
 .cred{
-    color: #E53167;
+    color: #E53167 !important;
 }
 .corange{
-    color: #ffa200
+    color: #ffa200 !important
 }
 
 .cwhite{
-    color: white;
+    color: white !important;
 }
 .cblue{
-    color: #61a0ff;
+    color: #61a0ff !important;
 }
 .center{
     text-align: center !important;
@@ -44,14 +49,14 @@ h1, h2, h3, h4, h5{
     float: right;
 }
 .yr-select{
-    border-radius: 1000px;
+    border-radius: 1000px ;
     border-color: #61a0ff;
 }
 .yr-button{
-    border-radius: 1000px;
-    background: #ffa200;
-    border-color: #ffa200;
-    min-width: 100px;
+    border-radius: 1000px !important;
+    background: #ffa200 !important;
+    border-color: #ffa200 !important;
+    min-width: 100px !important;
 }
 .yr-button:hover{
     border-radius: 1000px;

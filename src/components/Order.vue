@@ -10,7 +10,10 @@
                 :columns="columns"
                 :search-options="{
                     enabled: true,
-                    initialSortBy: {field: 'orderId',type: 'asc'}
+                }"
+                :sort-options="{
+                    enabled: true,
+                    initialSortBy: {field: 'createdAt',type: 'desc'}
                 }"
                 :pagination-options="{
                     enabled: true,
@@ -19,6 +22,14 @@
                 }"
                 @on-row-click="onRowClick"
                 :rows="rows">
+                <template slot="table-row" slot-scope="props">
+                    <span v-if="props.column.field == 'status'">
+                        <span :style="'font-weight: 400; color:'+props.row.colorStatus">{{props.row.status}}</span> 
+                    </span>
+                    <span v-else>
+                    {{props.formattedRow[props.column.field]}}
+                    </span>
+                </template>
                 <div slot="emptystate">
                     ยังไม่มีข้อมูล
                 </div>
@@ -50,7 +61,7 @@
                         </b-col>
                         <b-col>
                             <div class="bot-border mb-2"><h5>สถานะ</h5></div>
-                            <p>{{passData.status}}</p>
+                            <p :style="'font-weight: 400; color:'+passData.colorStatus">{{passData.status}}</p>
                             <div class="bot-border mb-2"><h5>Contact</h5></div>
                             <p>{{cardDetail.card_detail_contact}}</p>
                             <!-- this.passData -->
@@ -72,9 +83,11 @@
                         </b-col>
                         <b-col>
                             <h5 class="mb-5">Video บนการ์ด</h5>
-                            <iframe width="100%" height='200px' controls
-                            :src="vdoUrl">
-                            </iframe>
+                            <!-- <iframe width="100%" height='200px' controls src="http://fishyutt.xyz/dev/admin/media/vdos/01415010sec.mp4">
+                            </iframe> -->
+                            <video width="100%" height="200px" controls>
+                                <source v-if="vdoUrl" :src="vdoUrl" type="video/mp4">
+                            </video>
                         </b-col>
                     </b-row>
                     <div>
@@ -120,7 +133,7 @@ export default {
         },
     data(){
         return{
-            colorText: '',
+            colorText: '#159',
             dateShow: '',
             imgUrl: '',
             vdoUrl:'',
@@ -142,7 +155,7 @@ export default {
           sortable: false,
         },
         {
-          label: 'Created On',
+          label: 'สร้างเมื่อ',
           field: 'createdAt',
           type: 'date',
           dateInputFormat: 'YYYY-MM-DD ',
@@ -166,11 +179,11 @@ export default {
         this.isLoading = true;
        const getUserData = this.$session.get('sessionData')
        this.userData = getUserData[0]
-       console.log(this.userData)
+       console.log('userData', this.userData)
+    //    console.log(this.userData)
         var querystring = require('querystring');
         var chackEP = querystring.stringify({
             user_id: this.userData.user_id
-
         });
 
         const config = {
@@ -190,14 +203,14 @@ export default {
         //           data: theData,
         //           config: { headers: {'Content-Type': 'multipart/form-data' }}
         //       })
-        axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', chackEP, config)
-//         axios.get('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', {
-//     params: {
-//       user_id: '4'
-//     }
-//   })
+        // axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', chackEP, config)
+        axios.get('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', {
+    params: {
+      user_id: this.userData.user_id
+    }
+  })
           .then((result) => {
-                console.log(result)
+                console.log('aaa',result)
                 const data = result.data
                 this.allData = result.data
                 for (var i = 0; i < data.length; i++) { 
@@ -210,7 +223,8 @@ export default {
                 comment_user: data[i].comment_user,
                 galleries: data[i].galleries,
                 marker: data[i].marker,
-                cardDetail: data[i].card_detail})
+                cardDetail: data[i].card_detail,
+                colorStatus: ''})
                 }
             
              for (var i = 0; i < data.length; i++) { 
@@ -221,12 +235,16 @@ export default {
             for (var i = 0; i < data.length; i++) { 
                 if(this.rows[i].status == 1){
                     this.rows[i].status = "ยังไม่ชำระเงิน"
-                    this.colorText = 'cred'
+                    this.rows[i].colorStatus = '#E53167'
                 }else if(this.rows[i].status == 2){
                     this.rows[i].status = "ชำระเงินแล้ว"
+                    this.rows[i].colorStatus = '#61a0ff'
                 }else if(this.rows[i].status == 3){
                     this.rows[i].status = "อยู่ในระหว่างดำเนินการ"
-                }else this.rows[i].status = "เสร็จสิ้น"
+                    this.rows[i].colorStatus = '#ffa200'
+                }else {this.rows[i].status = "เสร็จสิ้น"
+                        this.rows[i].colorStatus = '#61ff83'
+                        }
             }
             
             for (var i = 0; i < data.length; i++) { 
@@ -253,7 +271,7 @@ export default {
     methods:{
         onRowClick(params) {
             // this.isLoading = true;
-            
+            this.vdoUrl= ''
             this.showData=true
             this.passData = params.row
             console.log(this.passData.marker)

@@ -14,9 +14,9 @@
         <b-row>
           <b-col md="6" class="fontth fs24 cwhite">
             <h1 class="mt-5">Youry คืออะไร?</h1>
-            <p> เราคือแพลตฟอร์มที่รับทำสื่อสิ่งพิมพ์ในรูปแบบออนไลน์
+            <p class="fs24"> เราคือแพลตฟอร์มที่รับทำสื่อสิ่งพิมพ์ในรูปแบบออนไลน์
               โดยเราได้นำเทคโนโลยีAR มาใช้งานร่วมกับสื่อสิ่งพิมพ์
-              ทำให้คุณได้รับประสบณ์ใหม่ๆ ตอนนี้เราได้ให้บริการโฟโต้บุ๊ค
+              ทำให้คุณได้รับประสบการณ์ใหม่ๆ ตอนนี้เราได้ให้บริการโฟโต้บุ๊ค
               และ การ์ดเชิญสำหรับงานต่างๆ ท่านที่สนใจสามารถเลือกชม
               สินค้าได้จากทางเว็บไซต์นี่เลย
             </p>
@@ -26,7 +26,7 @@
           <!-- <b-col md="1"></b-col> -->
           <b-col md="6" left>
             <parallax-container>
-            <parallax-element :parallaxStrength="-15" :type="'depth'">
+            <parallax-element :parallaxStrength="-10" :type="'depth'">
                 <img src="../assets/banner3.png" class="mt-3 card-show-home">
             </parallax-element>
           </parallax-container>
@@ -74,8 +74,8 @@
         <p class="fs24 mt-3">คุณสามารถนำโทรศัพท์ของคุณที่มีแอปพลิเคชั่น Youry มาสแกนเพื่อดู AR
         </p>
         <div class="center pb-3">
-          <img src="../assets/qrcode.jpeg" style="width:150px; height:150px;">
-              ทดลองใช้AR ดาวน์โหลดได้ที่
+          <img src="../assets/qrcode.png" style="width:150px; height:150px;">
+              <p>ทดลองใช้AR ดาวน์โหลดได้ที่</p>
           <img src="../assets/gplogo.png" style="width:auto; height:24px;background-color:#fff;padding:1px;border-radius:5px">
         </div>
 
@@ -119,11 +119,15 @@
 /* eslint-disable */
 import Parallax from 'vue-parallaxy'
 import HomeContent from '@/components/HomeContent'
+
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // import {userChack} from '@/components/Signin'
   export default {
     props: ["userData","userSignin"],
     components: {
-      Parallax
+      Parallax,
+      swiper,
+      swiperSlide
     },
     name: 'Home',
     // props:['userChack'],
@@ -245,8 +249,8 @@ import HomeContent from '@/components/HomeContent'
     mounted() {
       // current swiper instance
       // 然后你就可以使用当前上下文内的swiper对象去做你想做的事了
-      console.log('this is current swiper instance object', this.swiper)
-      this.swiper.slideTo(3, 1000, false)
+      // console.log('this is current swiper instance object', this.swiper)
+      // this.swiper.slideTo(3, 1000, false)
     }
 
   }

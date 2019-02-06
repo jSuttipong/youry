@@ -1,5 +1,6 @@
 <template>
-  <div>
+<div>
+  <div class="block-display-desktop">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous">
     <b-navbar toggleable="md" type="dark" variant="light" style="box-shadow: 0px 1px 6px #888888; position:fixed;z-index:5 !important ; width:100%">
@@ -9,16 +10,14 @@
           <router-link to="/"><img src="./assets/logo.png" class="nav-logo"/></router-link>
         </b-navbar-brand>
         <b-collapse is-nav id="nav_collapse" class="fontth">
+          <b-navbar-nav>
+          <vs-divider class="box-display-phone"/>
           <li style="list-style: none; "><router-link to="/" class="mr-3">หน้าแรก </router-link></li>
           <li style="list-style: none; "><router-link to="/Product" class="mr-3">สินค้า </router-link></li>
-          <li style="list-style: none; "><router-link to="#" class="mr-3">ราคา </router-link></li>
-          <li style="list-style: none; "><router-link to="#" class="mr-3">เกี่ยวกับเรา </router-link></li>
-          <!-- <b-navbar-nav>
-            <b-nav-item href="#">Home</b-nav-item>
-            <b-nav-item href="#">Showcase</b-nav-item>
-            <b-nav-item href="#">About Us</b-nav-item>
-          </b-navbar-nav> -->
-          <!-- Right aligned nav items -->
+          <!-- <li style="list-style: none; "><router-link to="#" class="mr-3">ราคา </router-link></li> -->
+          <!-- <li style="list-style: none; "><router-link to="#" class="mr-3">เกี่ยวกับเรา </router-link></li> -->
+          <vs-divider class="box-display-phone"/>
+          </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <!-- {{this.$session.getAll()}} -->
                 <router-link to="/Order"><b-button v-if="this.$session.get('session')== true" class="yr-button mr-2 bgblue">Order</b-button></router-link>
@@ -46,9 +45,13 @@
                     backgroundColor= '#ffffff'
                     :is-full-page="true"></loading>
     </div>
-    <div style="position:relative;min-height:640px">
+    <!-- router-view***************************************************************** -->
+    <div class="block-display-desktop" style="position:relative;min-height:640px">
       <router-view/>
     </div>
+    <!-- <div class="box-display-phone" style="position:relative;min-height:640px">
+      <h1>ระบบยังไม่รองรับ Smartphone</h1>
+    </div> -->
     <!-- Footer*********************************************** -->
     <div class="footer fontth cwhite pb-2" style=" position:relative; padding-top:1px">
       <b-container >
@@ -80,6 +83,12 @@
             <p style="font-size:12px;"><i class="fas fa-copyright" style="font-size:12px; margin-top: 20px;"></i>2018 Youry, All rights reserved.</p>
       </b-container>
     </div>
+  </div>
+  <div class="box-display-phone fontth center-pages center">
+    <b-container>
+      <h2>ระบบยังไม่รองรับ Smartphone และ Tablet</h2>
+    </b-container>
+  </div>
   </div>
 </template>
 

@@ -12,6 +12,8 @@ import * as VueGoogleMaps from 'vue2-google-maps'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import Vuesax from 'vuesax'
 import VueMouseParallax from 'vue-mouse-parallax'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 
 // USE
 Vue.use(VueSession)
@@ -28,6 +30,7 @@ Vue.use(VueGoogleMaps, {
   },
 })
 Vue.use(VueMouseParallax)
+Vue.use(VueAxios, axios)
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.css'
@@ -35,6 +38,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/Styleres.css'
 import 'vuesax/dist/vuesax.css'
 import 'swiper/dist/css/swiper.css'
+import './assets/Style.css';
+import './assets/Styleres.css';
 
 Vue.config.productionTip = false
 

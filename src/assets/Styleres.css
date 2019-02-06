@@ -1,4 +1,4 @@
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 1024px) {
     /* For mobile phones: */
     h1{
         font-size: 24px
@@ -28,6 +28,9 @@
         padding: 30px
       }
       .ar-for-sample{
+          display: none
+      }
+      .block-display-desktop{
           display: none
       }
       .box-display-phone{
