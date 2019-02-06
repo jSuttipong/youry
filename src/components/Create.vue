@@ -10,15 +10,16 @@
             <b-row>
               <b-col>
                 <b-carousel id="carousel1"
-                style="width:100%;max-width:550px"
+                class="mt-4"
+                style="width:100%;max-width:550px;border-radius:10px"
                 controls
                 indicators
-                background="#ababab"
+                background="#fff"
                 :interval="4000"
                 img-width="300"
                 img-height="480"
                 v-model="slide"
-                @sliding-start="onSlideStart"
+                @sliding-starphot="onSlideStart"
                 @sliding-end="onSlideEnd"
           >
             <div v-for=" data in exampleDesign" :key="data.ex">
@@ -29,11 +30,11 @@
               </b-col>
               <b-col>
                 <h1 class="mt-5 cwhite">ตัวอย่าง</h1>
-                <p class="fs24 cwhite">นี่เป็นตัวอย่างการแสดงผล AR บนการ์ดงานแต่ง โดยจะแสดงผลปุ่มที่สามารถกดเพื่อดูข้อมูลเช่น ข้อมูลสถานที่จัดงาน ข้อมูลการติดต่อ อีกทั้งสามารถแสดงวีดีโอที่คุณต้องการให้เล่นบนหน้าการ์ดได้ผ่านแอพพลิเคชั้น Youry</p>
+                <p class="fs24 cwhite">นี่เป็นตัวอย่างการแสดงผล AR บนการ์ดงานแต่ง โดยจะแสดงผลปุ่มที่สามารถกดเพื่อดูข้อมูลเช่น ข้อมูลสถานที่จัดงาน ข้อมูลการติดต่อ อีกทั้งสามารถแสดงวีดีโอที่คุณต้องการให้เล่นบนหน้าการ์ดได้ผ่านแอปพลิเคชั้น Youry</p>
                 <p class="cwhite">ดาวน์โหลดแอปพลิเคชั่นได้ที่ Google Playstore</p>
                 <router-link to="https://play.google.com"><img src="../assets/gplogo.png" style="width:30%;background-color:white;border-radius:5px;padding:5px;position:relative" alt=""></router-link>
                 <b-col>
-                  <img src="../assets/qrcode.jpeg" class="mt-3" style="width:25%;position:relative;margin-left:-10px">
+                  <img src="../assets/qrcode.png" class="mt-3" style="width:25%;position:relative;margin-left:-10px">
                 </b-col>
               </b-col>
             </b-row>
@@ -50,7 +51,7 @@
               </div>
               </div>
             </div> -->
-            <h3 class="center mt-3">อัพโหลดรูปพื้นหลังที่จะให้ARแสดงผล</h3>
+            <h3 class="center mt-3">สร้างออเดอร์ของคุณ</h3>
             <div class="inputData-area mt-4" >
               <div v-if="!image">
                   <form ref="marker" class="input-none" enctype="multipart/form-data">
@@ -78,7 +79,7 @@
                 <b-col>
                     <div >
                       <img :src="image" class="image-show" style="display: flex; justify-content: center;">
-                      <b-button class="mt-3 ml-3 mb-3 yr-button" @click="removeImage()">ลบ Marker</b-button>
+                      <b-button class="mt-3 ml-3 mb-3 left yr-button" @click="removeImage()">ลบ Marker</b-button>
                     </div>
                 </b-col>
                 <b-col class="pr-4">
@@ -108,7 +109,7 @@
                     </video>
                     <b-button @click="removeVideo" class="yr-button mt-2 mb-2">Remove Video</b-button>
                   </div>
-                  <h4 class="corange">ปุ่มที่จะแสดง</h4>
+                  <!-- <h4 class="corange">ปุ่มที่จะแสดง</h4> -->
                   <div>
                     <div >
                       <!-- <b-form-select v-if="countBtn == 4||countBtn == 3||countBtn == 2||countBtn == 1" v-model="btnData1" :options="btnOnCard" class="mb-3 yr-select" >
@@ -117,7 +118,7 @@
                         </template>
                       </b-form-select> -->
                       <div>
-                        <h5 class="mb-2">Location</h5>
+                        <h4 class="mb-2 fontth">Location</h4>
                         <!-- <b-form-input class="mb-2" v-model="locationBtn" type="text" placeholder="Location ของคุณ"></b-form-input> -->
                         <div class="mb-2 ">
                         <GmapAutocomplete placeholder="โปรดเพิ่มตำแหน่งของคุณ" @place_changed="setLocation" class="location-input"></GmapAutocomplete>
@@ -128,7 +129,7 @@
                             :zoom="17"
                             map-type-id="terrain"
                             id="mapId"
-                            style="width: 500px; height: 300px"
+                            style="width: 100%; height: 300px"
                           >
                           <GmapMarker ref="mapMarker" :position="currentLocation"/>
                           <!-- <GmapMarker ref="myMarker"
@@ -146,11 +147,20 @@
                           </div> -->
                       </div>
                       <div>
-                        <h5 class="mb-2">Contact</h5>
+                        <h4 class="mb-2 mt-3 fontth">Contact</h4>
                         <b-form-input class="mb-2" v-model="contactBtn" type="text" placeholder="การติดต่อ ของคุณ เช่นเบอร์โทรศัพท์"></b-form-input>
                       </div>
                       <div>
-                        <h5>Gallerys</h5>
+                        
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </b-col>
+              </b-row>
+              <b-container>
+                  <div class="mb-3">
+                    <h4 class="mt-2 fontth">Gallerys</h4>
                         <form ref="gallerys" enctype="multipart/form-data">
                           <!-- <label for="file-upload" class="button-upload mt-2">
                                                   <h5 class="text-on-btn-upload"><i class="fas fa-upload"></i></h5>
@@ -163,15 +173,7 @@
                             <input type="file" ref="gallerysData" name="gallerys[]" id="filesToUpload" @change="setDataGallerys" multiple="multiple" accept=".png,.jpg,.jpeg,.gif,.tif">
                           </label>
                         </form>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </b-col>
-              </b-row>
-              <b-container>
-                  <div class="mb-3">
-                        <h5>ข้อมูลความต้องการของคุณ</h5>
+                        <h4 class="fontth">ข้อมูลเพิ่มเติม</h4>
                         <b-form-textarea id="textarea1"
                      v-model="commentsData"
                      placeholder="ข้อมูลความต้องการของคุณ เช่น ต้องการปุ่มแบบไหน รูปทรงของปุ่ม (ใส่ข้อมูลหรือไม่ใส่ก็ได้)"
@@ -361,6 +363,9 @@ const axios = require('axios');
             },
             {
               ex: require('../assets/theme/1-ex/ex3.png'),
+            },
+            {
+              ex: require('../assets/banner3.png'),
             }
         ],
       }
@@ -569,7 +574,7 @@ const axios = require('axios');
       
       axios({
                   method: 'post',
-                  url: 'http://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_card.php',
+                  url: 'https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_card.php',
                   data: theData,
                   config: { headers: {'Content-Type': 'multipart/form-data' }}
               })

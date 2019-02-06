@@ -495,7 +495,7 @@ export default {
         
          axios({
                   method: 'post',
-                  url: 'http://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_card.php',
+                  url: 'https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_card.php',
                   data: theData,
                   config: { headers: {'Content-Type': 'multipart/form-data' }}
               })

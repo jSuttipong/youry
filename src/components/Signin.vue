@@ -113,7 +113,7 @@ const axios = require('axios');
           }
         }
         this.isLoading = true;
-        axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/check_user_login.php', chackEP, config)
+        axios.post('https://fishyutt.xyz/dev/admin/files/api/users_api/check_user_login.php', chackEP, config)
           .then((result) => {
             console.log(result.data)
             console.log(result)

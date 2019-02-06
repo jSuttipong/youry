@@ -128,7 +128,7 @@ export default {
             'Content-Type': 'application/x-www-form-urlencoded'
           }
         }
-        axios.post('http://fishyutt.xyz/dev/admin/files/api/orders_api/query_gallery.php', chackEP, config)
+        axios.post('https://fishyutt.xyz/dev/admin/files/api/orders_api/query_gallery.php', chackEP, config)
           .then((result) => {
               console.log(result)
               this.galleryData = result.data

@@ -85,7 +85,7 @@ export default {
           }
         }
         
-        axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/create_user.php', chackEP, config)
+        axios.post('https://fishyutt.xyz/dev/admin/files/api/users_api/create_user.php', chackEP, config)
           .then((result) => {
               console.log(result)
               console.log('sccess')
@@ -93,7 +93,7 @@ export default {
                 user_email: this.email,
                 user_password: this.password,
               });
-              axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/check_user_login.php', chackEP2, config)
+              axios.post('https://fishyutt.xyz/dev/admin/files/api/users_api/check_user_login.php', chackEP2, config)
                .then((result) => {
                   this.$session.start()
                   this.$session.set('session', true)

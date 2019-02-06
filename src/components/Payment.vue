@@ -172,7 +172,7 @@ const axios = require('axios');
         theData.append('payment_cvv',this.cvv);
         axios({
                   method: 'post',
-                  url: 'http://fishyutt.xyz/dev/admin/files/api/orders_api/update_order_payment.php',
+                  url: 'https://fishyutt.xyz/dev/admin/files/api/orders_api/update_order_payment.php',
                   data: theData,
                   config: { headers: {'Content-Type': 'multipart/form-data' }}
               })

@@ -175,7 +175,11 @@ ul{
     height: 600px;
     /* background-image: url('../assets/bg/bg2.png'); */
     /* background-size: cover; */
-    background-color: #3b86cb;
+    /* background-color: #fff */
+    background-image: linear-gradient(to left, #2d3691, #2b469c, #2c54a5, #3063ae, #3971b5);
+}
+.w-100{
+    border-radius: 5px
 }
 
 .work-area{
@@ -521,7 +525,7 @@ ul{
     display: none;
 }
 .card-show-home{
-    width: 75%;
+    width: 70%;
     height: auto;
     /* background-image: url("../assets/banner3.png"); */
 }

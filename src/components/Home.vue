@@ -24,15 +24,16 @@
             <p>สำหรับท่านที่ไม่เข้าใจว่าAR คือะไร <a href="#" class="cred">คลิกเลย</a></p>
           </b-col>
           <!-- <b-col md="1"></b-col> -->
-          <b-col md="6" left>
-            <parallax-container>
-            <parallax-element :parallaxStrength="-10" :type="'depth'">
-                <img src="../assets/banner3.png" class="mt-3 card-show-home">
-            </parallax-element>
-          </parallax-container>
-            </b-col>
+          <b-col md="6" left >
+              <img src="../assets/banner4.png" class="mt-3 card-show-home">
+            <!-- <parallax-container class="mt-3">
+              <parallax-element :parallaxStrength="-10" :type="'depth'">
+                  <img src="../assets/banner4.png" class="mt-3 card-show-home">
+              </parallax-element>
+            </parallax-container> -->
+          </b-col>
         </b-row>
-        <p class="fontth fs32 cwhite">สั่งสินค้าได้ง่ายๆเพียงแค่</p>
+        <p class="fontth fs32 cwhite">สั่งจัดทำได้ง่ายๆเพียงแค่</p>
         <b-row>
           <div v-for="(item) in items" class="fontth cwhite ar-for-sample" :key="item.id">
             <b-col>
@@ -137,7 +138,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
         items: [{
             numFlow: '1',
             iconFlow: require('../assets/flowicon/icon1.png'),
-            nameFlow: 'เลือกการ์ดหรือ Photobook'
+            nameFlow: 'เลือกการ์ดหรือ โฟโต้บุ๊ค'
           },
           {
             numFlow: '2',

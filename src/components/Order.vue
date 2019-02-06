@@ -24,7 +24,7 @@
                 :rows="rows">
                 <template slot="table-row" slot-scope="props">
                     <span v-if="props.column.field == 'status'">
-                        <span :style="'font-weight: 400; color:'+props.row.colorStatus">{{props.row.status}}</span> 
+                        <span :style="'font-weight: 400; color:'+props.row.colorStatus">{{props.row.status}}</span>
                     </span>
                     <span v-else>
                     {{props.formattedRow[props.column.field]}}
@@ -83,11 +83,14 @@
                         </b-col>
                         <b-col>
                             <h5 class="mb-5">Video บนการ์ด</h5>
-                            <!-- <iframe width="100%" height='200px' controls src="http://fishyutt.xyz/dev/admin/media/vdos/01415010sec.mp4">
-                            </iframe> -->
-                            <video width="100%" height="200px" controls>
-                                <source v-if="vdoUrl" :src="vdoUrl" type="video/mp4">
+                            <iframe width="100%" height='200px' controls :src="vdoUrl">
+                            </iframe>
+                            <!-- <video v-if="vdoUrl" width="100%" height="200px" controls>
+                                <source :src="vdoUrl" type="video/mp4">
                             </video>
+                            <div v-else>
+                                <h3>ไม่มีวีดีโอ</h3>
+                            </div> -->
                         </b-col>
                     </b-row>
                     <div>
@@ -204,7 +207,7 @@ export default {
         //           config: { headers: {'Content-Type': 'multipart/form-data' }}
         //       })
         // axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', chackEP, config)
-        axios.get('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', {
+        axios.get('https://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', {
     params: {
       user_id: this.userData.user_id
     }
