@@ -149,7 +149,7 @@ export default {
         this.errors.push("กรุณาใส่เบอร์โทรศัพท์");
         this.ePhoneNumber = "กรุณาใส่เบอร์โทรศัพท์"
       }
-      if(isNaN(this.phoneNumber) == true||!this.cvv || this.cvv.length !=10){
+      if(isNaN(this.phoneNumber) == true||!this.phoneNumber || this.phoneNumber.length !=10){
         this.errors.push("เบอร์โทรศัพท์ไม่ถูกต้อง");
         this.ePhoneNumber = "เบอร์โทรศัพท์ไม่ถูกต้อง"
       }
