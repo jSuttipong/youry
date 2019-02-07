@@ -83,14 +83,14 @@
                         </b-col>
                         <b-col>
                             <h5 class="mb-5">Video บนการ์ด</h5>
-                            <iframe width="100%" height='200px' controls :src="vdoUrl">
-                            </iframe>
-                            <!-- <video v-if="vdoUrl" width="100%" height="200px" controls>
+                            <!-- <iframe width="100%" height='200px' controls :src="vdoUrl">
+                            </iframe> -->
+                            <video v-if="vdoUrl" width="100%" height="200px" controls>
                                 <source :src="vdoUrl" type="video/mp4">
                             </video>
                             <div v-else>
                                 <h3>ไม่มีวีดีโอ</h3>
-                            </div> -->
+                            </div>
                         </b-col>
                     </b-row>
                     <div>

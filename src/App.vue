@@ -28,7 +28,7 @@
                 <b-modal id="checkSignOut" ref="modalSignOut" hide-footer title="Sign Out" >
                   <p class="my-4 cred">คุณต้องการออกจากระบบหรือไม่</p>
                   <b-button @click="cSignout()" class="yr-button">ตกลง</b-button>
-                  <b-button class="yr-button mr-3" @click="hideModal()" style="background-color:#999; border:none">ยกเลิก</b-button>
+                  <b-button class="yr-button2 right mr-3" @click="hideModal()" style="background-color:#999; border:none">ยกเลิก</b-button>
                 </b-modal>
               </div>
           </b-navbar-nav>

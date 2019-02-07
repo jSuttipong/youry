@@ -21,15 +21,15 @@
                             <b-col>
                                 <div class="bot-border mb-2"><h5>ผู้สั่งทำ</h5></div>
                                 <p>คุณ {{userData.user_fname}} {{userData.user_lname}}</p>
-                                <div class="bot-border mb-2"><h5>ราคา</h5></div>
-                                <p>{{orderDataShow.order_price}}</p>
+                                <div class="bot-border mb-2"><h5>ชนิด</h5></div>
+                                <p>{{this.orderType}}</p>
                             </b-col>
                             <b-col>
                                 <div class="bot-border mb-2"><h5>วันที่สั่งทำ</h5></div>
                                 <p>{{orderDate}}</p>
                                 <br>
-                                <div class="bot-border mb-2"><h5>ชนิด</h5></div>
-                                <p>{{this.orderType}}</p>
+                                <div class="bot-border mb-2"><h5>ราคา</h5></div>
+                                <p>{{orderDataShow.order_price}}</p>
                             </b-col>
                             <b-col>
                                 <div class="bot-border mb-2"><h5>สถานะ</h5></div>

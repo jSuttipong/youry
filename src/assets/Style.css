@@ -58,7 +58,20 @@ h1, h2, h3, h4, h5{
     border-color: #ffa200 !important;
     min-width: 100px !important;
 }
+
 .yr-button:hover{
+    border-radius: 1000px;
+    background: #7bbefd !important ;
+    border-color: #7bbefd !important;
+    min-width: 100px;
+}
+.yr-button2{
+    border-radius: 1000px !important;
+    background: #7c7c7c !important;
+    border-color: #7c7c7c !important;
+    min-width: 100px !important;
+}
+.yr-button2:hover{
     border-radius: 1000px;
     background: #7bbefd !important ;
     border-color: #7bbefd !important;
@@ -373,7 +386,7 @@ ul{
     border: 1px solid #ccc;
     height: auto;
     padding-top: 30px;
-    padding-bottom: 30px;
+    padding-bottom: 60px;
     margin-bottom: 30px;
     border-radius: 10px;
 }
@@ -510,6 +523,7 @@ ul{
     background-image: linear-gradient(to right bottom, #ffffff, #eaeaea, #d5d5d5, #c0c0c0, #acacac);
     width: 100%;
     height: 100%;
+    min-height: 670px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

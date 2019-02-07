@@ -13,7 +13,7 @@
         <div v-if="eFname != ''" class="cred err-text">*{{eFname}}</div>
         <b-form-input v-model="lname" type="text" placeholder="นามสกุล" class="signin-input"></b-form-input>
         <div v-if="eLname != ''" class="cred err-text">*{{eLname}}</div>
-        <b-form-input v-model="phoneNumber" type="text" placeholder="เบอร์โทรศัพท์" class="signin-input"></b-form-input>
+        <b-form-input v-model="phoneNumber" type="text" maxlength="10" placeholder="เบอร์โทรศัพท์" class="signin-input"></b-form-input>
         <div v-if="ePhoneNumber !=''" class="cred err-text">*{{ePhoneNumber}}</div>
         <b-button class="yr-button" @click="checkForm()" type="submit">ตกลง</b-button>
         <!-- <b-button class="yr-button" @click="cLogout()" type="submit">Sign Out</b-button> -->
@@ -149,7 +149,7 @@ export default {
         this.errors.push("กรุณาใส่เบอร์โทรศัพท์");
         this.ePhoneNumber = "กรุณาใส่เบอร์โทรศัพท์"
       }
-      if(isNaN(this.phoneNumber) == true){
+      if(isNaN(this.phoneNumber) == true||!this.cvv || this.cvv.length !=10){
         this.errors.push("เบอร์โทรศัพท์ไม่ถูกต้อง");
         this.ePhoneNumber = "เบอร์โทรศัพท์ไม่ถูกต้อง"
       }

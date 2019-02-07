@@ -79,7 +79,7 @@
                 <b-col>
                     <div >
                       <img :src="image" class="image-show" style="display: flex; justify-content: center;">
-                      <b-button class="mt-3 ml-3 mb-3 left yr-button" @click="removeImage()">ลบ Marker</b-button>
+                      <b-button class="mt-3 ml-3 mb-3 left yr-button2" @click="removeImage()">ลบ Marker</b-button>
                     </div>
                 </b-col>
                 <b-col class="pr-4">
@@ -151,7 +151,6 @@
                         <b-form-input class="mb-2" v-model="contactBtn" type="text" placeholder="การติดต่อ ของคุณ เช่นเบอร์โทรศัพท์"></b-form-input>
                       </div>
                       <div>
-                        
                       </div>
                     </div>
                   </div>
@@ -199,18 +198,18 @@
           <b-col>
             <div class="bot-border mb-2"><h5>ราคาสร้างสรรค์งาน</h5></div>
             <p>{{defaultPriceFormat}} บาท</p>
-            <div class="bot-border mb-2"><h5>รวมราคาปุ่ม</h5></div>
-            <p>{{cardBntPrice}} บาท</p>
           </b-col>
           <b-col>
             <div class="bot-border mb-2"><h5>ราคาต่อปุ่ม</h5></div>
             <p>500 บาท</p>
-            <div class="bot-border mb-2"><h5>รวม</h5></div>
-            <p>{{allPrice}} บาท</p>
           </b-col>
           <b-col>
-            <div class="bot-border mb-2"><h5>จำนวนปุ่ม</h5></div>
-            <p>{{countBtn}} ปุ่ม</p>
+            <div class="bot-border mb-2"><h5>รวม</h5></div>
+            <p>{{allPrice}} บาท</p>
+            <!-- <div class="bot-border mb-2"><h5>รวมราคาปุ่ม</h5></div>
+            <p>{{cardBntPrice}} บาท</p> -->
+            <!-- <div class="bot-border mb-2"><h5>จำนวนปุ่ม</h5></div>
+            <p>{{countBtn}} ปุ่ม</p> -->
           </b-col>
         </b-row>
         <p class="cred">*หมายเหตุ งานจะเริ่มดำเนินต่อเมื่อชำระเงินเสร็จสิ้น</p>
