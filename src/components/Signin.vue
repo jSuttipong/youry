@@ -3,14 +3,14 @@
   <div class="signin fontth " style="position:relative;padding-top:200px;padding-bottom:200px">
     <div class="helper " >
       <b-card text-variant="black" header="Sign in" class="text-center signin-group">
-        <b-form-input v-model="email" type="text" placeholder="E-mail" class="signin-input"></b-form-input>
+        <b-form-input id='email-input' v-model="email" type="text" placeholder="E-mail" class="signin-input"></b-form-input>
         <div v-if="eEmail != ''" class="cred err-text">*{{eEmail}}</div>
         <b-form-input v-model="password" type="password" placeholder="Password" class="signin-input"></b-form-input>
         <div v-if="ePassword != ''" class="cred err-text">*{{ePassword}}</div>
         <!-- <div v-if="checkError" class="cred">{{errors}}</div> -->
         <div v-if="checkError2" class="cred err-text">{{reportAlert}}</div>
         <div style="float:left;width:200px;height:30px;"><router-link to="/Register">create account</router-link></div>
-        <b-button class="yr-button" @click="checkForm()" type="submit">Sign in</b-button>
+        <b-button id="submit-button" class="yr-button" @click="checkForm()" type="submit">Sign in</b-button>
 
          <div class="vld-parent">
         <loading :active.sync="isLoading"
@@ -48,15 +48,11 @@ const axios = require('axios');
           errors: [],
           checkError: false,
           checkError2: false,
-
           isLoading: false,
           eEmail: '',
           ePassword: ''
-      }
-
-      
+      } 
   },
-  
   methods:{
     checkForm: function (e) {
       this.isLoading = true;
@@ -117,7 +113,7 @@ const axios = require('axios');
           .then((result) => {
             console.log(result.data)
             console.log(result)
-            if(result.data[0].result == true){
+            if(result.data[0].result == true&&result.data[0].email_verified == true){
               // this.isLoading = true;
               // this.render()
               console.log('Login success')
@@ -132,6 +128,11 @@ const axios = require('axios');
             this.isLoading = false
               // this.isLoading = false;
               
+            }else if (result.data[0].result == true&&result.data[0].email_verified != true) {
+              this.checkError= false
+              this.checkError2 = true;
+              this.reportAlert = 'กรุณายืนยัน E-mail'
+              this.isLoading = false
             }
             else {
               this.checkError= false

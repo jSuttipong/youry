@@ -543,3 +543,37 @@ ul{
     height: auto;
     /* background-image: url("../assets/banner3.png"); */
 }
+.image-container[data-v-10e59822]{
+    max-width: 500px !important;
+    max-height: 300px !important;
+    width: 500px !important;
+    height: 300px !important;
+}
+.show-img{
+  max-width: 400px !important;
+  max-height: 200px !important;
+  /* width: 1000px */
+}
+.image-list{
+  width: 500px !important;
+  /* max-width: 0 !important; */
+
+}
+.image-list-container{
+    width: 100% !important;
+    max-width: 500px !important;
+}
+.image-list-container .image-list-item[data-v-10e59822]{
+    width: 70px !important;
+    height: 70px !important;
+}
+.image-list-container .image-list-item .show-img[data-v-10e59822]{
+    max-width: 70px !important;
+    max-height: 70px !important;
+}
+.image-overlay[data-v-10e59822]{
+    height: 250px !important;
+}
+/* .centered[data-v-10e59822]{
+    top: 70% !important
+} */

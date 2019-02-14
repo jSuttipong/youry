@@ -355,10 +355,10 @@ const axios = require('axios');
         ],
         exampleDesign: [
           {
-              ex: require('../assets/theme/1-ex/ex1.png'),
+              ex: require('../assets/theme/1-ex/ex2.png'),
             },
             {
-              ex: require('../assets/theme/1-ex/ex2.png'),
+              ex: require('../assets/theme/1-ex/ex1.png'),
             },
             {
               ex: require('../assets/theme/1-ex/ex3.png'),

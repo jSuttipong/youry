@@ -73,10 +73,11 @@
                     </b-row>
                     <div>
                         <div class="bot-border mb-2"><h5>ข้อมูลเพิ่มเติม</h5></div>
-                        <div v-if="cardDetail.card_detail_other == ''"><p >ไม่มีการส่งรายละเอียดที่ต้องการเพิ่มเติม</p></div>
+                        <div v-if="cardDetail.card_detail_other == ''||cardDetail.card_detail_other == null"><p >ไม่มีการส่งรายละเอียดที่ต้องการเพิ่มเติม</p></div>
                         <div v-else><p>{{cardDetail.card_detail_other}}</p></div>
                     </div>
-                    <b-row>
+                    <div v-if="productType == 'การ์ด'">
+                        <b-row>
                         <b-col>
                             <h5>รูป marker</h5>
                             <img :src="imgUrl" style="width:100%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);">
@@ -93,11 +94,25 @@
                             </div>
                         </b-col>
                     </b-row>
-                    <div>
-                        <h5 class="mt-3">รูป Gallerys</h5>
-                        <div v-for="galleriesData in passData.galleries" :key='galleriesData.gallery_url' style="width:100%; height:auto">
-                            <img :src="galleriesData.gallery_url" class="left" style="width:20%;height:120px;margin: 5px">
+                        <div>
+                            <h5 class="mt-3">รูป Gallerys</h5>
+                            <div v-for="galleriesData in passData.galleries" :key='galleriesData.gallery_url' style="width:100%; height:auto">
+                                <img :src="galleriesData.gallery_url" class="left" style="width:20%;height:120px;margin: 5px">
+                            </div>
                         </div>
+                    </div>
+                    <div v-else>
+                        <h5>รูป marker</h5>
+                        <img v-for="imgUrl in imgUrl" :key="imgUrl.marker_img" :src="imgUrl.marker_img" style="width:30%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);">
+                        <h5 class="mb-5">Video</h5>
+                            <!-- <iframe width="100%" height='200px' controls :src="vdoUrl">
+                            </iframe> -->
+                            <video v-if="vdoUrl" width="100%" height="200px" controls>
+                                <source :src="vdoUrl" type="video/mp4">
+                            </video>
+                            <div v-else>
+                                <h3>ไม่มีวีดีโอ</h3>
+                            </div>
                     </div>
                 </b-container>
                 <!-- <div>
@@ -136,6 +151,7 @@ export default {
         },
     data(){
         return{
+            productType: '',
             colorText: '#159',
             dateShow: '',
             imgUrl: '',
@@ -227,11 +243,12 @@ export default {
                 galleries: data[i].galleries,
                 marker: data[i].marker,
                 cardDetail: data[i].card_detail,
+                video: data[i].video,
                 colorStatus: ''})
                 }
             
              for (var i = 0; i < data.length; i++) { 
-                if(this.rows[i].orderType == 0){
+                if(this.rows[i].orderType == 1){
                     this.rows[i].orderType = "โฟโต้บุ๊ค"
                 }else this.rows[i].orderType = "การ์ด";
             }
@@ -250,7 +267,7 @@ export default {
                         }
             }
             
-            for (var i = 0; i < data.length; i++) { 
+            for (var i = 0; i < data.length; i++) {
                 var c = numeral(this.rows[i].price).format('0,0')
                  this.rows[i].price = c
                 // return c
@@ -274,14 +291,18 @@ export default {
     methods:{
         onRowClick(params) {
             // this.isLoading = true;
+            console.log('datarespon',params.row)
             this.vdoUrl= ''
             this.showData=true
             this.passData = params.row
             console.log(this.passData.marker)
             this.cardDetail = this.passData.cardDetail
-            this.imgUrl = this.passData.marker.marker_img
-            this.vdoUrl = this.passData.marker.marker_vdo
-             console.log(this.passData.galleries)
+            if(this.passData.orderType == 'การ์ด'){
+                 this.imgUrl = this.passData.marker[0].marker_img
+            }else  {this.imgUrl = this.passData.marker}
+            this.vdoUrl = this.passData.video.video
+            this.productType = this.passData.orderType
+            // console.log(this.passData.galleries)
             // for (let index = 0; index < this.passData.length; index++) {
             //     this.galleryData.push(this.passData[index].galleries)   
             // }

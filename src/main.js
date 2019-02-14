@@ -14,6 +14,7 @@ import Vuesax from 'vuesax'
 import VueMouseParallax from 'vue-mouse-parallax'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import vUploader from 'v-uploader';
 
 // USE
 Vue.use(VueSession)
@@ -31,6 +32,7 @@ Vue.use(VueGoogleMaps, {
 })
 Vue.use(VueMouseParallax)
 Vue.use(VueAxios, axios)
+Vue.use(vUploader);
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.css'

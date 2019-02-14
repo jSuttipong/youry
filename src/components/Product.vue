@@ -15,14 +15,14 @@
           </router-link>
           </b-col>
           <b-col>
-            <!-- <router-link :to="productList[1].pLink" >
+            <router-link :to="productList[1].pLink" >
             <div class="product-box">
             <img :src="productList[1].pImg" class="mb-5 product-select " v-b-tooltip.hover :title="productList[1].pName">
             <div class="product-hide-box">
                     <div class="text-on-product" ><h1>Photobook</h1></div>
               </div>
             </div>
-          </router-link> -->
+          </router-link>
           </b-col>
         </b-row>
       </div>

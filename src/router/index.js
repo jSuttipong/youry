@@ -15,6 +15,7 @@ import OrderCreate from '@/components/OrderCreate'
 import OrderBill from '@/components/OrderBill'
 import CreatePhotobook from '@/components/CreatePhotobook'
 import PageNotFound from '@/components/PageNotFound'
+import Verify from '@/components/verify'
 
 
 Vue.use(Router)
@@ -93,6 +94,11 @@ export default new Router({
       path: '/CreatePhotobook',
       name: 'CreatePhotobook',
       component: CreatePhotobook,
+      props: true
+    },{
+      path: '/verify',
+      name: 'verify',
+      component: Verify,
       props: true
     },
     { path: '*', component: PageNotFound, }

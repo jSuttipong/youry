@@ -20,6 +20,7 @@
           </b-navbar-nav>
           <b-navbar-nav class="ml-auto">
             <!-- {{this.$session.getAll()}} -->
+            <p v-if="this.$session.get('session')== true" class="mr-3">สวัสดีคุณ {{$session.get('sessionData')[0].user_fname}}</p>
                 <router-link to="/Order"><b-button v-if="this.$session.get('session')== true" class="yr-button mr-2 bgblue">Order</b-button></router-link>
                 <b-button v-if="this.$session.get('session')== true"  v-b-modal.checkSignOut class="yr-button">Sign Out</b-button>
                 <router-link to="/Signin" v-else><b-button class="yr-button">Sign in</b-button></router-link>
