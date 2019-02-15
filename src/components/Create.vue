@@ -581,7 +581,7 @@ export default {
     removeVideo: function(e) {
       this.video = "";
     },
-    setDataGDataGallerys(e) {
+    setDataGallerys(e) {
       var data = this.$refs.gallerysData.files;
       // this.gallerys = this.$refs.gallerysData.files;
       data = Array.from(data);
