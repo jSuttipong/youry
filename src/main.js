@@ -42,6 +42,7 @@ import 'vuesax/dist/vuesax.css'
 import 'swiper/dist/css/swiper.css'
 import './assets/Style.css';
 import './assets/Styleres.css';
+import './assets/Styleimagegalley.css'
 
 Vue.config.productionTip = false
 

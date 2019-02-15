@@ -63,7 +63,7 @@
                     </b-col>
                 </b-row>
                 <div v-for="galleryData in galleryData" :key="galleryData.gallery_name">
-                    <img :src="galleryData.gallery_path" class="left mt-3 mr-3" style="width:300px;height:250px;position:relative">
+                    <img :src="galleryData.gallery_path" class="left mt-3 mr-3 gallerys-image" style="width:300px;height:250px;position:relative">
                 </div>
             </div>
         </b-container>

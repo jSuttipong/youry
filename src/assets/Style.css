@@ -117,6 +117,10 @@ ul{
     background-color: #61a0ff !important;
     border-color: #61a0ff !important;
 }
+.bgred{
+    background-color: #E53167 !important;
+    border-color: #E53167 !important;
+}
 .theme-select{
     width: 330px;
     height: 160px;
