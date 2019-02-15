@@ -1,5 +1,8 @@
 <template>
   <div class="fontth mb-5">
+    <b-container class="mt-4">
+      <b-alert dismissible variant="danger" v-model="showDismissibleAlert">กรุณาอัพโหลดรูปภาพและวีดีโอ</b-alert>
+    </b-container>
     <h2 class="center mt-5">สร้าง photobook AR ของคุณ</h2>
     <b-container>
       <b-row class="mt-5 mb-5">
@@ -125,6 +128,11 @@
         <b-button class="yr-button right bgblack" @click="cancel()">ยกเลิก</b-button>
       </div>
     </b-modal>
+    <b-modal ref="CheckLogin" hide-footer title="กรุณาเข้าสู่ระบบ" size="lg">
+      <div>
+        <Signin></Signin>
+      </div>
+    </b-modal>
     </b-container>
     <div class="vld-parent">
       <loading
@@ -142,12 +150,15 @@
 /* eslint-disable */
 const axios = require('axios');
 const moment = require('moment');
+import Signin from "@/components/Signin";
+
 var numeral = require('numeral');
 import Loading from "vue-loading-overlay";
 export default {
   name: 'createPhotobook',
   components: {
-      Loading
+      Loading,
+    Signin,
     },
   data(){
     return{
@@ -159,7 +170,8 @@ export default {
       commentsData: '',
       userData: '',
       isLoading: false,
-      videoData: ''
+      videoData: '',
+      showDismissibleAlert: false
     }
   },
   methods:{
@@ -219,16 +231,16 @@ export default {
     },
     checkInputData() {
       if (this.$session.get("session") == true) {
-        // this.cardBntPrice = parseInt(this.cardBntPrice);
-        this.allPrice = 150* parseInt(this.gallerys.length);
+        if(this.gallerys.length == 0 ||this.gallerys.length == '0'||this.video == ''){
+          this.showDismissibleAlert=true
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+        }else{
+          this.showDismissibleAlert=false
+          this.allPrice = 150* parseInt(this.gallerys.length);
         var c = numeral(this.allPrice).format("0,0");
         this.allPrice = c;
-        // console.log(this.allPrice);
-        // var c = numeral(this.allPrice).format("0,0");
-        // var d = numeral(this.defaultPrice).format("0,0");
-        // this.allPrice = c;
-        // this.defaultPriceFormat = d;
         this.$refs.CheckData.show();
+        }
       } else {
         this.isLoading = false;
         this.$refs.CheckLogin.show();
@@ -271,6 +283,7 @@ export default {
             name: "PhotobookBill",
             params: { orderData: result.data,userData: this.userData,video: this.video,gallerys: this.gallerysForShow ,price: this.allPrice}
           });
+          window.scrollTo({ top: 0, behavior: 'smooth' })
           this.isLoading = false;
         })
         .catch(error => {

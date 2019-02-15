@@ -62,7 +62,7 @@
                 <div class="text-on-layout" >{{layout.btn}}</div>
               </div>
               </div>
-          </div>-->
+          </div> -->
           <h3 class="center mt-3">สร้างออเดอร์ของคุณ</h3>
           <div class="inputData-area mt-4">
             <div v-if="!image">
@@ -259,12 +259,12 @@
             </div>
             <p>{{defaultPriceFormat}} บาท</p>
           </b-col>
-          <b-col>
+          <!-- <b-col>
             <div class="bot-border mb-2">
               <h5>ราคาต่อปุ่ม</h5>
             </div>
             <p>500 บาท</p>
-          </b-col>
+          </b-col> -->
           <b-col>
             <div class="bot-border mb-2">
               <h5>รวม</h5>
@@ -305,7 +305,6 @@
 </template>
 <script >
 /* eslint-disable */
-
 import Signin from "@/components/Signin";
 import Loading from "vue-loading-overlay";
 // import FreeTransform from 'vue-free-transform'
@@ -330,7 +329,7 @@ export default {
       latlong: "",
       searchAddressInput: "",
       cardBntPrice: 500,
-      defaultPrice: 2000,
+      defaultPrice: 3000,
       defaultPriceFormat: "",
       active: "1",
       countBtn: "1",
@@ -644,7 +643,8 @@ export default {
     checkInputData() {
       if (this.$session.get("session") == true) {
         this.cardBntPrice = parseInt(this.cardBntPrice);
-        this.allPrice = this.cardBntPrice + this.defaultPrice;
+        // this.allPrice = this.cardBntPrice + this.defaultPrice;
+        this.allPrice = 3000
         console.log(this.allPrice);
         var c = numeral(this.allPrice).format("0,0");
         var d = numeral(this.defaultPrice).format("0,0");
@@ -698,6 +698,7 @@ export default {
             name: "OrderBill",
             params: { orderData: result.data }
           });
+          window.scrollTo({ top: 0, behavior: 'smooth' })
           this.isLoading = false;
         })
         .catch(error => {

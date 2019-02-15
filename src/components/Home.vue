@@ -22,6 +22,10 @@
             </p>
             <br>
             <!-- <p>สำหรับท่านที่ไม่เข้าใจว่าAR คือะไร <a href="#" class="cred">คลิกเลย</a></p> -->
+            <div class="left">
+              <p>สร้างชิ้นงานของคุณ</p>
+            <router-link to="/Product" class="mr-3"><b-button class="yr-button left" style="background-color:transparent !important;border:2px solid #fff !important">เริ่มเลย</b-button></router-link>
+            </div>
           </b-col>
           <!-- <b-col md="1"></b-col> -->
           <b-col md="6" left >
@@ -37,7 +41,7 @@
         <b-row>
           <div v-for="(item) in items" class="fontth cwhite ar-for-sample" :key="item.id">
             <b-col>
-              <div class="flowbox">
+              <div class="flowbox" :style="item.s">
                 {{item.numFlow}}
             <br>
             <img :src="item.iconFlow">
@@ -95,13 +99,13 @@
           </b-col>
           <b-col>
             <img src="../assets/arcover.jpg" style="width:auto; height:350px;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
-    border: 1px solid rgba(0, 0, 0, 0.10);" class="mt-5">
+    border: 1px solid rgba(0, 0, 0, 0.10);border-radius:10px" class="mt-5">
           </b-col>
         </b-row>
         <b-row>
           <b-col>
             <img src="../assets/arcard.png" style="width:auto; height:500px;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
-    border: 1px solid rgba(0, 0, 0, 0.10);" class="mt-5">
+    border: 1px solid rgba(0, 0, 0, 0.10);border-radius:10px" class="mt-5">
           </b-col>
           <b-col>
             <h2 class="mt-5">ตัวอย่าง Card</h2>
@@ -138,22 +142,26 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
         items: [{
             numFlow: '1',
             iconFlow: require('../assets/flowicon/icon1.png'),
-            nameFlow: 'เลือกการ์ดหรือ โฟโต้บุ๊ค'
+            nameFlow: 'เลือกการ์ดหรือ โฟโต้บุ๊ค',
+            s: 'margin-top:30px'
           },
           {
             numFlow: '2',
             iconFlow: require('../assets/flowicon/icon2.png'),
-            nameFlow: 'เลือกแบบที่สนใจ'
+            nameFlow: 'เลือกแบบที่สนใจ',
+            s: 'margin-top:0px'
           },
           {
             numFlow: '3',
             iconFlow: require('../assets/flowicon/icon3.png'),
-            nameFlow: 'อัพโหลดรูปภาพและวีดีโอของคุณ'
+            nameFlow: 'อัพโหลดรูปภาพและวีดีโอของคุณ',
+            s: 'margin-top:30px'
           },
           {
             numFlow: '4',
             iconFlow: require('../assets/flowicon/icon4.png'),
-            nameFlow: 'ตรวจสอบและชำระเงิน'
+            nameFlow: 'ตรวจสอบและชำระเงิน',
+            s: 'margin-top:0px'
           },
           // {
           //   numFlow: '5',
@@ -163,7 +171,8 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
           {
             numFlow: '6',
             iconFlow: require('../assets/flowicon/icon6.png'),
-            nameFlow: 'รอทีมงานติดต่อไปเมื่อเสร็จสิ้น'
+            nameFlow: 'รอทีมงานติดต่อไปเมื่อเสร็จสิ้น',
+            s: 'margin-top:30px'
           },
         ],
         productList: [{
@@ -283,10 +292,10 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
   }
 
   .flowbox {
-    background: #9CC7FF;
+    background-image: linear-gradient(to left bottom, #0072eb, #0082f1, #0090f4, #189ef7, #38acf8);
     width: 250px;
     height: 250px;
-    border-radius: 1000px;
+    border-radius: 10px;
     /* float: left; */
     text-align: center;
     margin: 5px;

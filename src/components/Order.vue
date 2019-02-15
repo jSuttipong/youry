@@ -44,8 +44,14 @@
         </div>
             </div>
             <!-- Modal Component -->
+            <b-modal class="fontth" size="lg" v-model="people" :title="'รายชื่อผู้ที่จะเข้าร่วมงาน    จำนวน '+commentRespon.length+' คน'" ok-only>
+                <b-table striped hover :items="commentRespon" :fields="fields" />
+            </b-modal>
             <b-modal v-model="showData" size="lg" centered :title="'รายการที่ '+passData.orderId" class="fontth">
                 <b-container>
+                     <div class="mb-3" v-if="productType == 'การ์ด'">
+                            <b-button @click="checkPeople()">ข้อมูลการเข้าร่วม</b-button>
+                        </div>
                     <b-row>
                         <b-col>
                             <div class="bot-border mb-2"><h5>ประเภท</h5></div>
@@ -73,8 +79,9 @@
                     </b-row>
                     <div>
                         <div class="bot-border mb-2"><h5>ข้อมูลเพิ่มเติม</h5></div>
-                        <div v-if="cardDetail.card_detail_other == ''||cardDetail.card_detail_other == null"><p >ไม่มีการส่งรายละเอียดที่ต้องการเพิ่มเติม</p></div>
+                        <div v-if="cardDetail.card_detail_other == ''||cardDetail.card_detail_other == null"><p>ไม่มีการส่งรายละเอียดที่ต้องการเพิ่มเติม</p></div>
                         <div v-else><p>{{cardDetail.card_detail_other}}</p></div>
+                       
                     </div>
                     <div v-if="productType == 'การ์ด'">
                         <b-row>
@@ -167,6 +174,9 @@ export default {
             imgData: [],
             galleryData: [],
             cardDetail: '',
+            commentRespon:[],
+            people: false,
+            fields: ['name'],
              columns: [
         {
           label: 'Order ID',
@@ -293,9 +303,14 @@ export default {
         //     }
     },
     methods:{
+        checkPeople(){
+            this.showData=false;
+            this.people = true;
+            
+        },
         onRowClick(params) {
             // this.isLoading = true;
-            console.log('datarespon',params.row)
+            // console.log('datarespon',params.row)
             this.vdoUrl= ''
             this.showData=true
             this.passData = params.row
@@ -320,14 +335,23 @@ export default {
         //   order_id: this.passData.orderId,
         // //   User_password: this.password,
         // });
-
-        const config = {
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
-        }
-        // axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', chackEP, config)
-        //   .then((result) => {
+        var theData = new FormData();
+        theData.append("order_id", this.passData.orderId);
+        // console.log('check',this.passData.orderId)
+        // const config = {
+        //   headers: {
+        //     'Content-Type': 'application/x-www-form-urlencoded'
+        //   }
+        // }
+        axios.get('https://fishyutt.xyz/dev/admin/files/api/orders_api/order_join_us.php', {
+    params: {
+      order_id: this.passData.orderId
+    }
+  })
+          .then((result) => {
+              console.log('',result)
+              this.commentRespon = result.data
+          })
         //     // console.log(result.data)
         //     // this.imgData.push(result.data)
         //     // console.log(this.imgData)

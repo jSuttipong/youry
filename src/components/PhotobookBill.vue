@@ -48,7 +48,6 @@
                     </b-col>
                 </b-row>
                 <b-row>
-                    
                 </b-row>
             </div>
         </b-container>

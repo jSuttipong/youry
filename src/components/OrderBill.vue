@@ -1,6 +1,6 @@
 <template>
-    <div class="fontth" style="height:1900px">
-        <b-container class="wapper-order-bill" style="height: 1200px">
+    <div class="fontth" style="min-height:1800px">
+        <b-container class="wapper-order-bill" style="height: 0px">
             <div >
                 <h2 class="pt-4 mb-4 center" >ข้อมูลการสั่งทำ</h2>
                 <div>
@@ -62,6 +62,7 @@
                         </div>
                     </b-col>
                 </b-row>
+                <div class="bot-border mb-3"><h5>รูปภาพ</h5></div>
                 <div v-for="galleryData in galleryData" :key="galleryData.gallery_name">
                     <img :src="galleryData.gallery_path" class="left mt-3 mr-3 gallerys-image" style="width:300px;height:250px;position:relative">
                 </div>
