@@ -116,13 +116,10 @@ export default {
                     this.orderType = "โฟโต้บุ๊ค"
                 }else this.orderType = "การ์ด";   
                 
-
         var querystring = require('querystring');
         var chackEP = querystring.stringify({
             order_id: this.orderDataShow.order_id
-
         });
-
         const config = {
           headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

@@ -85,23 +85,29 @@
         </b-container>
     </b-row>
     <div>
-      <b-button class="yr-button right" @click="checkInputData()">สั่งทำ</b-button>
+      <b-button class="yr-button right mt-2 mb-5" @click="checkInputData()">สั่งทำ</b-button>
       <!-- <b-button class="yr-button right">ยกเลิก</b-button> -->
     </div>
     <b-modal ref="CheckData" hide-footer title="ตรวจสอบข้อมูล" size="lg">
       <div>
         <b-row>
-          <b-col>
+          <!-- <b-col>
             <div class="bot-border mb-2">
               <h5>ราคาสร้างสรรค์งาน</h5>
             </div>
             <p>{{defaultPriceFormat}} บาท</p>
+          </b-col> -->
+          <b-col>
+            <div class="bot-border mb-2">
+              <h5>ราคาต่อรูปภาพ</h5>
+            </div>
+            <p>150 บาท</p>
           </b-col>
           <b-col>
             <div class="bot-border mb-2">
-              <h5>ราคาต่อปุ่ม</h5>
+              <h5>จำนวนรูปที่อัพโหลด</h5>
             </div>
-            <p>500 บาท</p>
+            <p>{{gallerys.length}}</p>
           </b-col>
           <b-col>
             <div class="bot-border mb-2">
@@ -120,20 +126,40 @@
       </div>
     </b-modal>
     </b-container>
+    <div class="vld-parent">
+      <loading
+        :active.sync="isLoading"
+        :can-cancel="false"
+        loader="dots"
+        color="#106FFF"
+        backgroundColor="#ffffff"
+        :is-full-page="true"
+      ></loading>
+    </div>
   </div>
 </template>
 <script>
 /* eslint-disable */
 const axios = require('axios');
+const moment = require('moment');
+var numeral = require('numeral');
+import Loading from "vue-loading-overlay";
 export default {
   name: 'createPhotobook',
+  components: {
+      Loading
+    },
   data(){
     return{
       video: '',
       images: [],
       gallerys:[],
       gallerysForShow:[],
-      commentsData: ''
+      allPrice: 0,
+      commentsData: '',
+      userData: '',
+      isLoading: false,
+      videoData: ''
     }
   },
   methods:{
@@ -194,7 +220,9 @@ export default {
     checkInputData() {
       if (this.$session.get("session") == true) {
         // this.cardBntPrice = parseInt(this.cardBntPrice);
-        // this.allPrice = this.cardBntPrice + this.defaultPrice;
+        this.allPrice = 150* parseInt(this.gallerys.length);
+        var c = numeral(this.allPrice).format("0,0");
+        this.allPrice = c;
         // console.log(this.allPrice);
         // var c = numeral(this.allPrice).format("0,0");
         // var d = numeral(this.defaultPrice).format("0,0");
@@ -216,10 +244,13 @@ export default {
       const getUserData = this.$session.get("sessionData");
       // this.allPrice = this.cardBntPrice + this.defaultPrice;
       this.userData = getUserData[0];
+      console.log('user',this.userData)
       this.gallerys = Object.assign(this.gallerys);
       var theData = new FormData();
       theData.append("user_id", this.userData.user_id);
-      theData.append("fileToUpload ", this.videoData);
+      theData.append("fileToUpload", this.videoData);
+      theData.append("orther",this.commentsData)
+      console.log('video',this.videoData)
       for (var i = 0; i < this.gallerys.length; i++) {
         let file = this.gallerys[i];
 
@@ -233,12 +264,12 @@ export default {
         config: { headers: { "Content-Type": "multipart/form-data" } }
       })
         .then(result => {
-          console.log(result);
+          console.log('sccess',JSON.stringify(result));
           console.log("sccess");
           console.log("pushData", result.data);
           this.$router.push({
-            name: "OrderBill",
-            params: { orderData: result.data }
+            name: "PhotobookBill",
+            params: { orderData: result.data,userData: this.userData,video: this.video,gallerys: this.gallerysForShow ,price: this.allPrice}
           });
           this.isLoading = false;
         })

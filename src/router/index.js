@@ -16,6 +16,7 @@ import OrderBill from '@/components/OrderBill'
 import CreatePhotobook from '@/components/CreatePhotobook'
 import PageNotFound from '@/components/PageNotFound'
 import Verify from '@/components/verify'
+import PhotobookBill from '@/components/PhotobookBill'
 
 
 Vue.use(Router)
@@ -99,6 +100,12 @@ export default new Router({
       path: '/verify',
       name: 'verify',
       component: Verify,
+      props: true
+    },
+    {
+      path: '/PhotobookBill',
+      name: 'PhotobookBill',
+      component: PhotobookBill,
       props: true
     },
     { path: '*', component: PageNotFound, }

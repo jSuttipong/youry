@@ -56,13 +56,13 @@
                         <b-col>
                             <div class="bot-border mb-2"><h5>ราคา</h5></div>
                             <p>{{passData.price}}</p>
-                            <div class="bot-border mb-2"><h5>Location</h5></div>
+                            <div class="bot-border mb-2" v-if="productType == 'การ์ด'"><h5>Location</h5></div>
                             <p>{{cardDetail.card_detail_location}}</p>
                         </b-col>
                         <b-col>
                             <div class="bot-border mb-2"><h5>สถานะ</h5></div>
                             <p :style="'font-weight: 400; color:'+passData.colorStatus">{{passData.status}}</p>
-                            <div class="bot-border mb-2"><h5>Contact</h5></div>
+                            <div class="bot-border mb-2" v-if="productType == 'การ์ด'"><h5>Contact</h5></div>
                             <p>{{cardDetail.card_detail_contact}}</p>
                             <!-- this.passData -->
                             <!-- {{passData.marker.marker_img}} -->
@@ -97,13 +97,17 @@
                         <div>
                             <h5 class="mt-3">รูป Gallerys</h5>
                             <div v-for="galleriesData in passData.galleries" :key='galleriesData.gallery_url' style="width:100%; height:auto">
-                                <img :src="galleriesData.gallery_url" class="left" style="width:20%;height:120px;margin: 5px">
+                                <img :src="galleriesData.gallery_url" class="left gallerys-image" style="width:20%;height:120px;margin: 5px">
                             </div>
                         </div>
                     </div>
                     <div v-else>
                         <h5>รูป marker</h5>
-                        <img v-for="imgUrl in imgUrl" :key="imgUrl.marker_img" :src="imgUrl.marker_img" style="width:30%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);">
+                        <b-row>
+                            <b-container>
+                        <img v-for="imgUrl in imgUrl" :key="imgUrl.marker_img" :src="imgUrl.marker_img" class="gallerys-image" style="width:30%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);">
+                        </b-container>
+                        </b-row>
                         <h5 class="mb-5">Video</h5>
                             <!-- <iframe width="100%" height='200px' controls :src="vdoUrl">
                             </iframe> -->

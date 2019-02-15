@@ -3,6 +3,7 @@
     <div class="fontth pt-5 pb-5" style="min-height:567px">
         <b-container>
         <b-card text-variant="black" :header="'ชำระเงิน '+orderId" class="text-center signin-group " style="width:50%">
+            
             <h5 class="cblue">บัตรเดบิต</h5>
         <div style="width:auto;height: 40px">
             <p class="left mb-1 mr-3" style="font-size:14px">เลือกชนิดบัตร</p><div v-if="eTypeCard" class="cred">{{eTypeCard}}</div>
@@ -63,7 +64,7 @@ import VueMonthlyPicker from 'vue-monthly-picker'
 import Loading from 'vue-loading-overlay';
 const axios = require('axios');
     export default {
-    props:["orderId"],
+    props:["orderId",'type'],
       components: {
             Loading,
             VueMonthlyPicker
