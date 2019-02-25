@@ -143,7 +143,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
             numFlow: '1',
             iconFlow: require('../assets/flowicon/icon1.png'),
             nameFlow: 'เลือกการ์ดหรือ โฟโต้บุ๊ค',
-            s: 'margin-top:30px'
+            s: 'margin-top:0px'
           },
           {
             numFlow: '2',
@@ -155,7 +155,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
             numFlow: '3',
             iconFlow: require('../assets/flowicon/icon3.png'),
             nameFlow: 'อัพโหลดรูปภาพและวีดีโอของคุณ',
-            s: 'margin-top:30px'
+            s: 'margin-top:0px'
           },
           {
             numFlow: '4',
@@ -172,7 +172,7 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
             numFlow: '6',
             iconFlow: require('../assets/flowicon/icon6.png'),
             nameFlow: 'รอทีมงานติดต่อไปเมื่อเสร็จสิ้น',
-            s: 'margin-top:30px'
+            s: 'margin-top:0px'
           },
         ],
         productList: [{

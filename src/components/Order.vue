@@ -81,7 +81,6 @@
                         <div class="bot-border mb-2"><h5>ข้อมูลเพิ่มเติม</h5></div>
                         <div v-if="cardDetail.card_detail_other == ''||cardDetail.card_detail_other == null"><p>ไม่มีการส่งรายละเอียดที่ต้องการเพิ่มเติม</p></div>
                         <div v-else><p>{{cardDetail.card_detail_other}}</p></div>
-                       
                     </div>
                     <div v-if="productType == 'การ์ด'">
                         <b-row>
@@ -91,11 +90,11 @@
                         </b-col>
                         <b-col>
                             <h5 class="mb-5">Video บนการ์ด</h5>
-                            <!-- <iframe width="100%" height='200px' controls :src="vdoUrl">
-                            </iframe> -->
-                            <video v-if="vdoUrl" width="100%" height="200px" controls>
+                            <iframe v-if="vdoUrl"  width="100%" height='200px' controls :src="vdoUrl">
+                            </iframe>
+                            <!-- <video v-if="vdoUrl" width="100%" height="200px" controls>
                                 <source :src="vdoUrl" type="video/mp4">
-                            </video>
+                            </video> -->
                             <div v-else>
                                 <h3>ไม่มีวีดีโอ</h3>
                             </div>
@@ -116,11 +115,11 @@
                         </b-container>
                         </b-row>
                         <h5 class="mb-5">Video</h5>
-                            <!-- <iframe width="100%" height='200px' controls :src="vdoUrl">
-                            </iframe> -->
-                            <video v-if="vdoUrl" width="100%" height="200px" controls>
+                            <iframe v-if="vdoUrl" width="100%" height='200px' controls :src="vdoUrl">
+                            </iframe>
+                            <!-- <video v-if="vdoUrl" width="100%" height="200px" controls>
                                 <source :src="vdoUrl" type="video/mp4">
-                            </video>
+                            </video> -->
                             <div v-else>
                                 <h3>ไม่มีวีดีโอ</h3>
                             </div>
@@ -314,7 +313,7 @@ export default {
             this.vdoUrl= ''
             this.showData=true
             this.passData = params.row
-            console.log(this.passData.marker)
+            console.log('------',this.passData.marker[0].marker_img)
             this.cardDetail = this.passData.cardDetail
             if(this.passData.orderType == 'การ์ด'){
                  this.imgUrl = this.passData.marker[0].marker_img

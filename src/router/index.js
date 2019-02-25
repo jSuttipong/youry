@@ -47,7 +47,10 @@ export default new Router({
       path: '/Product',
       name: 'Product',
       component: Product,
-      props: true
+      props: true,
+      // children: [
+        
+      // ]
     },
     {
       path: '/Create',

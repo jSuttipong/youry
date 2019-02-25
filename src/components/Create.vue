@@ -196,7 +196,7 @@
                                                   <h5 class="text-on-btn-upload"><i class="fas fa-upload"></i></h5>
                                               </label>
                     <input class="input-none " type="file" name="files" id="file-upload"  ref="file" multiple />-->
-                    <label class="button-upload input-none">
+                    <label class="button-upload input-none" v-if="gallerysForShow.length < 10">
                       <h5 class="text-on-btn-upload">
                         <i class="fas fa-upload"></i>
                       </h5>

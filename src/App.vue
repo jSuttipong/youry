@@ -14,6 +14,7 @@
           <vs-divider class="box-display-phone"/>
           <li style="list-style: none; "><router-link to="/" class="mr-3">หน้าแรก </router-link></li>
           <li style="list-style: none; "><router-link to="/Product" class="mr-3">สินค้า </router-link></li>
+          <!-- <li style="list-style: none;" @click="$router.push('/Product')">สินค้า</li> -->
           <!-- <li style="list-style: none; "><router-link to="#" class="mr-3">ราคา </router-link></li> -->
           <!-- <li style="list-style: none; "><router-link to="#" class="mr-3">เกี่ยวกับเรา </router-link></li> -->
           <vs-divider class="box-display-phone"/>
