@@ -6,12 +6,12 @@
   </parallax>
     <div>
   <b-container fluid>
-  <b-row>
+  <b-row >
       <b-col md="1">
       </b-col>
       <!-- style="background-color:#333;border-radius: 5px;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);" -->
       <b-col >
-        <b-row>
+        <b-row class="object-slide-right">
           <b-col md="6" class="fontth fs24 cwhite">
             <h1 class="mt-5">Youry คืออะไร?</h1>
             <p class="fs24"> เราคือแพลตฟอร์มที่รับทำสื่อสิ่งพิมพ์ในรูปแบบออนไลน์
@@ -37,8 +37,8 @@
             </parallax-container> -->
           </b-col>
         </b-row>
-        <p class="fontth fs32 cwhite">สั่งจัดทำได้ง่ายๆเพียงแค่</p>
-        <b-row>
+        <p class="fontth fs32 cwhite object-slide-left">สั่งจัดทำได้ง่ายๆเพียงแค่</p>
+        <b-row class="object-slide-left">
           <div v-for="(item) in items" class="fontth cwhite ar-for-sample" :key="item.id">
             <b-col>
               <div class="flowbox" :style="item.s">
@@ -73,7 +73,7 @@
     </b-container>
     <b-container>
     </b-container>
-    <div class="bgartest mt-5 center cwhite fontth">
+    <div class="bgartest mt-5 center cwhite fontth " v-scroll-reveal>
       <b-container>
         <h1 class="cwhite mt-5">AR Test</h1>
         <p class="fs24 mt-3">คุณสามารถนำโทรศัพท์ของคุณที่มีแอปพลิเคชั่น Youry มาสแกนเพื่อดู AR
@@ -86,7 +86,7 @@
 
       </b-container>
     </div>
-    <div class="fontth" style="height: auto;background-color:#fff">
+    <div class="fontth" style="height: auto;background-color:#fff" v-scroll-reveal >
       <b-container class="ar-for-sample pb-5">
         <h1 class=" pt-5 center">ทดลองสแกน AR ได้ที่นี่</h1>
         <b-row>

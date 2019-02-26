@@ -27,6 +27,7 @@
       -webkit-transform: translateY(-30px);
               transform: translateY(-30px);
     }
+    
   }
 
   @-webkit-keyframes shadow-drop-center {
@@ -51,20 +52,73 @@
   }
   
 .slide-top{
-
+  transition-timing-function: linear
 }
 .slide-top:hover {
-	-webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  -webkit-animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             animation: slide-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both,
-            shadow-drop-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            shadow-drop-center 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
             
-    /* -webkit-animation: shadow-drop-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both; */
-            /* animation: shadow-drop-center 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;         */
+}
+@keyframes opacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-/* .shadow-drop-center{
-
+.opacity-slide{
+  -webkit-animation: opacity 1s;
+	        animation: opacity 1s;
 }
-.shadow-drop-center:hover {
-	
+@keyframes slide-right{
+  0% {
+    -webkit-transform: translateX(-30px);
+            transform: translateX(-30px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes slide-left{
+  0% {
+    -webkit-transform: translateX(30px);
+            transform: translateX(30px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+            transform: translateX(0);
+  }
+}
+@keyframes slide-top-to{
+  0% {
+    -webkit-transform: translateY(30px);
+            transform: translateY(30px);
+  }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+}
+.object-slide-right{
+  -webkit-animation: slide-right 1s,opacity 1s;
+	        animation: slide-right 1s,opacity 1s;
+}
+.object-slide-left{
+  -webkit-animation: slide-left 1s,opacity 1s;
+	        animation: slide-left 1s,opacity 1s;
+}
+.object-slide-top-to{
+  -webkit-animation: slide-top-to 1s,opacity 1s;
+	        animation: slide-top-to 1s,opacity 1s;
+}
+
+/* .button-slide-top{
+  transition-timing-function: linear;
+}
+.button-slide-top:hover{
+  animation: bt-slide-top 1s,bt-slide-top-Y 1s;
 } */

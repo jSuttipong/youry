@@ -88,7 +88,7 @@
   </div>
   <div class="box-display-phone fontth center-pages center">
     <b-container>
-      <h2>ระบบยังไม่รองรับ Smartphone และ Tablet</h2>
+      <!-- <h2>ระบบยังไม่รองรับ Smartphone และ Tablet</h2> -->
     </b-container>
   </div>
   </div>

@@ -31,7 +31,7 @@
           display: none
       }
       .block-display-desktop{
-          display: none
+          /* display: none */
       }
       .box-display-phone{
           display: inline !important;

@@ -4,25 +4,47 @@
       <h1 class="mt-4 mb-5 center">เลือกสินค้าของคุณ</h1>
       <div>
         <b-row>
-          <b-col>
-          <router-link :to="productList[0].pLink">
+          <b-col >
+            <div class="card-item-product-container object-slide-right mr-3" style="right:0">
+              <div class="card-item-product-box-top">
+                  <img src="../assets/product/cardicon.png" class="icon-img-in-card">
+              </div>
+              <div class="card-item-product-box-bottom">
+                <b-container class="mt-5 text-in-card ">
+                  <p>สร้างการ์ดเชิญของคุณให้ไม่เหมือนใครโดยใช้เทคโนโลยี AR ได้ที่นี่</p>
+                </b-container>
+              </div>
+              <b-button class="button-on-card button-slide-top font-hover" @click="$router.push('/Create')">คลิกเลย</b-button>
+            </div>
+          <!-- <router-link :to="productList[0].pLink">
           <div class="product-box slide-top ">
           <img :src="productList[0].pImg" class="mb-5 product-select" v-b-tooltip.hover :title="productList[0].pName">
           <div class="product-hide-box">
                     <div class="text-on-product" ><h1>Card</h1></div>
                   </div>
             </div>
-          </router-link>
+          </router-link> -->
           </b-col>
           <b-col>
-            <router-link :to="productList[1].pLink" >
+            <div class="card-item-product-container object-slide-left ml-3">
+              <div class="card-item-product-box-top">
+                  <img src="../assets/product/bookicon.png" class="icon-img-in-card">
+              </div>
+              <div class="card-item-product-box-bottom">
+                <b-container class="mt-5 text-in-card ">
+                  <p>เปลี่ยนรูปภาพบนโฟโต้บุ๊คของคุณให้เคลื่อนไหวได้ด้วยเทคโนโลยี AR ได้ที่นี้</p>
+                </b-container>
+              </div>
+              <b-button class="button-on-card font-hover" @click="$router.push('/CreatePhotobook')">คลิกเลย</b-button>
+            </div>
+            <!-- <router-link :to="productList[1].pLink" >
             <div class="product-box slide-top ">
             <img :src="productList[1].pImg" class="mb-5 product-select " v-b-tooltip.hover :title="productList[1].pName">
             <div class="product-hide-box">
                     <div class="text-on-product" ><h1>Photobook</h1></div>
               </div>
             </div>
-          </router-link>
+          </router-link> -->
           </b-col>
         </b-row>
       </div>

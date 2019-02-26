@@ -11,9 +11,9 @@
             <b-col>
               <b-carousel
                 id="carousel1"
-                class="mt-4"
+                class="mt-4 object-slide-top-to"
                 style="width:100%;max-width:550px;border-radius:10px"
-                controls
+                controlso
                 indicators
                 background="#fff"
                 :interval="4000"
@@ -28,7 +28,7 @@
                 </div>
               </b-carousel>
             </b-col>
-            <b-col>
+            <b-col class="object-slide-left">
               <h1 class="mt-5 cwhite">ตัวอย่าง</h1>
               <p
                 class="fs24 cwhite"
@@ -53,7 +53,7 @@
         </b-container>
       </div>
       <b-container>
-        <div class="work-area">
+        <div class="work-area object-slide-top-to">
           <!-- <div class="layout-area" >
                 <h3 class="center pt-3">เลือกจำนวนปุ่มที่จะแสดง</h3>
               <div v-for="layout in layout" :key="layout.lid" class="box-on-layout" >

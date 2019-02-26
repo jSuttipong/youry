@@ -29,6 +29,7 @@
     "vue-mouse-parallax": "^0.9.2",
     "vue-parallaxy": "^1.1.1",
     "vue-router": "^3.0.1",
+    "vue-scroll-reveal": "^1.0.11",
     "vue-session": "^1.0.0",
     "vue-upload-multiple-image": "^1.1.2",
     "vue2-google-maps": "^0.10.5",

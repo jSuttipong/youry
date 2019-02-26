@@ -1,12 +1,14 @@
 <template>
 <div class="bg-signin">
-  <div class="signin fontth " style="position:relative;padding-top:200px;padding-bottom:200px">
+  <div class="signin fontth object-slide-top-to" style="position:relative;padding-top:200px;padding-bottom:200px">
     <div class="helper " >
       <b-card text-variant="black" header="Sign in" class="text-center signin-group">
-        <b-form-input id='email-input' v-model="email" type="text" placeholder="E-mail" class="signin-input"></b-form-input>
-        <div v-if="eEmail != ''" class="cred err-text">*{{eEmail}}</div>
-        <b-form-input v-model="password" type="password" placeholder="Password" class="signin-input"></b-form-input>
-        <div v-if="ePassword != ''" class="cred err-text">*{{ePassword}}</div>
+        <!-- <b-form-input id='email-input' v-model="email" type="text" placeholder="E-mail" class="signin-input"></b-form-input> -->
+        <vs-input label="E-mail" id='email-input'  :danger="errorMail" :danger-text="eEmail"  placeholder="E-mail" v-model="email" style="width:100%;text-align:left"/>
+        <div v-if="eEmail != ''" class="cred err-text" >{{errorM()}}</div>
+        <vs-input label="Password" :danger="errorPass" :danger-text="ePassword" class="mb-3" type="password" placeholder="Password" v-model="password" style="width:100%;text-align:left"/>
+        <!-- <b-form-input v-model="password" type="password" placeholder="Password" class="signin-input"></b-form-input> -->
+        <div v-if="ePassword != ''" class="cred err-text">{{errorP()}}</div>
         <!-- <div v-if="checkError" class="cred">{{errors}}</div> -->
         <div v-if="checkError2" class="cred err-text">{{reportAlert}}</div>
         <div style="float:left;width:200px;height:30px;"><router-link to="/Register">create account</router-link></div>
@@ -50,10 +52,18 @@ const axios = require('axios');
           checkError2: false,
           isLoading: false,
           eEmail: '',
-          ePassword: ''
+          ePassword: '',
+          errorMail: false,
+          errorPass: false
       } 
   },
   methods:{
+    errorM(){
+      this.errorMail = true
+    },
+    errorP(){
+      this.errorPass = true
+    },
     checkForm: function (e) {
       this.isLoading = true;
       this.ePassword = '';
