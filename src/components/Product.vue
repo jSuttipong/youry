@@ -6,15 +6,16 @@
         <b-row>
           <b-col >
             <div class="card-item-product-container object-slide-right mr-3" style="right:0">
-              <div class="card-item-product-box-top">
+              <div class="card-item-product-box-top center">
                   <img src="../assets/product/cardicon.png" class="icon-img-in-card">
               </div>
               <div class="card-item-product-box-bottom">
                 <b-container class="mt-5 text-in-card ">
-                  <p>สร้างการ์ดเชิญของคุณให้ไม่เหมือนใครโดยใช้เทคโนโลยี AR ได้ที่นี่</p>
+                  <p class="ml-3 mr-3">สร้างการ์ดเชิญของคุณให้ไม่เหมือนใครโดยใช้เทคโนโลยี AR ได้ที่นี่</p>
                 </b-container>
               </div>
-              <b-button class="button-on-card button-slide-top font-hover" @click="$router.push('/Create')">คลิกเลย</b-button>
+              <!-- <b-button class="button-on-card button-slide-top font-hover" @click="$router.push('/Create')">คลิกเลย</b-button> -->
+              <b-button class="button-on-card button-slide-top font-hover" @click="$router.push('/CreateCard')">คลิกเลย</b-button>
             </div>
           <!-- <router-link :to="productList[0].pLink">
           <div class="product-box slide-top ">
@@ -27,12 +28,12 @@
           </b-col>
           <b-col>
             <div class="card-item-product-container object-slide-left ml-3">
-              <div class="card-item-product-box-top">
+              <div class="card-item-product-box-top center">
                   <img src="../assets/product/bookicon.png" class="icon-img-in-card">
               </div>
               <div class="card-item-product-box-bottom">
                 <b-container class="mt-5 text-in-card ">
-                  <p>เปลี่ยนรูปภาพบนโฟโต้บุ๊คของคุณให้เคลื่อนไหวได้ด้วยเทคโนโลยี AR ได้ที่นี้</p>
+                  <p class="ml-3 mr-3">เปลี่ยนรูปภาพบนโฟโต้บุ๊คของคุณให้เคลื่อนไหวได้ด้วยเทคโนโลยี AR ได้ที่นี้</p>
                 </b-container>
               </div>
               <b-button class="button-on-card font-hover" @click="$router.push('/CreatePhotobook')">คลิกเลย</b-button>

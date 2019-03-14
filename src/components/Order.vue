@@ -259,7 +259,6 @@ export default {
                 video: data[i].video,
                 colorStatus: ''})
                 }
-            
              for (var i = 0; i < data.length; i++) { 
                 if(this.rows[i].orderType == 1){
                     this.rows[i].orderType = "โฟโต้บุ๊ค"
@@ -310,6 +309,7 @@ export default {
         onRowClick(params) {
             // this.isLoading = true;
             // console.log('datarespon',params.row)
+           
             this.vdoUrl= ''
             this.showData=true
             this.passData = params.row
@@ -317,9 +317,13 @@ export default {
             this.cardDetail = this.passData.cardDetail
             if(this.passData.orderType == 'การ์ด'){
                  this.imgUrl = this.passData.marker[0].marker_img
-            }else  {this.imgUrl = this.passData.marker}
-            this.vdoUrl = this.passData.video.video
+                 this.vdoUrl = this.passData.video[0].video
+            }else  {this.imgUrl = this.passData.marker
+                
+            }
+            // this.vdoUrl = this.passData.video.video
             this.productType = this.passData.orderType
+            //  console.log('this video:',this.passData.video)
             // console.log(this.passData.galleries)
             // for (let index = 0; index < this.passData.length; index++) {
             //     this.galleryData.push(this.passData[index].galleries)   

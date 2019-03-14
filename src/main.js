@@ -14,7 +14,7 @@ import Vuesax from 'vuesax'
 import VueMouseParallax from 'vue-mouse-parallax'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import vUploader from 'v-uploader';
+// import vUploader from 'v-uploader';
 import VueScrollReveal from 'vue-scroll-reveal';
 
 // USE
@@ -33,7 +33,7 @@ Vue.use(VueGoogleMaps, {
 })
 Vue.use(VueMouseParallax)
 Vue.use(VueAxios, axios)
-Vue.use(vUploader);
+// Vue.use(vUploader);
 Vue.use(VueScrollReveal,{delay: 250,easing: 'ease-in'});
 
 // CSS
@@ -42,6 +42,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/Styleres.css'
 import 'vuesax/dist/vuesax.css'
 import 'swiper/dist/css/swiper.css'
+import 'material-icons/iconfont/material-icons.css';
 import './assets/Style.css';
 import './assets/Styleres.css';
 import './assets/Styleimagegalley.css'

@@ -1,38 +1,165 @@
 <template>
   <div class="fontth mb-5">
     <b-container class="mt-4">
-      <b-alert dismissible variant="danger" v-model="showDismissibleAlert">กรุณาอัพโหลดรูปภาพและวีดีโอ</b-alert>
+      <b-alert
+        dismissible
+        variant="danger"
+        v-model="showDismissibleAlert"
+      >กรุณาอัพโหลดรูปภาพและวีดีโอ</b-alert>
     </b-container>
-    <h2 class="center mt-5">สร้าง photobook AR ของคุณ</h2>
     <b-container>
+      <vs-divider color="primary">
+        <h2 class="center">สร้าง photobook AR ของคุณ</h2>
+      </vs-divider>
       <b-row class="mt-5 mb-5">
-        <b-col>
-          <h4 class="mt-3 fontth">อัพโหลดวีดีโอ ที่ต้องการให้แสดง</h4>
-            <div v-if="!video">
-              <form ref="videoShow" class="input-none" enctype="multipart/form-data">
-                <label for="vdoUpload" class="button-upload mt-2" >
-                  <h5 class="text-on-btn-upload">
-                    <i class="fas fa-upload"></i>
-                  </h5>
-                </label>
-                <input
-                  class="input-none"
-                  type="file"
-                  name="vdo"
-                  id="vdoUpload"
-                  ref="vdoUpload"
-                  @change="onFileChangeToVideo"
-                  accept=".avi,.flv,.mov,.mp4,.wmv,.3gp,.mpg"
-                >
-              </form>
+      </b-row>
+      <!-- <v-uploader :multiple="true" language='en' @done="uploadDone" ></v-uploader> -->
+      <b-container>
+        <h5 class="center">อัพโหลดรูปภาพที่ต้องการให้แสดงผล AR</h5>
+      </b-container>
+      <!-- <div v-for="countItem in countItem" :key="countItem"> -->
+        <!-- <h5 class="fontth">รูปและวีดีโอ1</h5> -->
+        <b-row>
+          <b-col>
+            <h5 class="fontth">วีดีโอ</h5>
+            <div v-if="!marker_img1">
+                <form ref="videoShow" class="input-none" enctype="multipart/form-data">
+                  <label for="vdoUpload" class="button-upload mt-2" >
+                    <h5 class="text-on-btn-upload">
+                      <i class="fas fa-upload"></i>
+                    </h5>
+                  </label>
+                  <input
+                    class="input-none"
+                    type="file"
+                    name="vdo"
+                    id="vdoUpload"
+                    ref="vdoUpload"
+                    @change="onFileChangeToVideo"
+                    accept=".avi,.flv,.mov,.mp4,.wmv,.3gp,.mpg"
+                  >
+                </form>
+              </div>
+              <div v-else class="mb-5">
+              <video width="100%" controls>
+                <source :src="marker_img1" type="video/mp4">
+              </video>
+              <b-button @click="removeVideo" class="yr-button mt-2 mb-2">Remove Video</b-button>
             </div>
-            <div v-else class="mb-5">
-            <video width="100%" controls>
-              <source :src="video" type="video/mp4">
-            </video>
-            <b-button @click="removeVideo" class="yr-button mt-2 mb-2">Remove Video</b-button>
+          </b-col>
+          <b-col>
+            <h5 class="fontth">รูป</h5>
+            <form ref="gallerys" enctype="multipart/form-data">
+              <label class="button-upload input-none">
+                <h5 class="text-on-btn-upload">
+                  <i class="fas fa-upload"></i>
+                </h5>
+                <input
+                  type="file"
+                  ref="gallerysData"
+                  name="gallerys[]"
+                  id="filesToUpload"
+                  @change="setDataGallerys"
+                  accept=".png, .jpg, .jpeg, .gif, .tif"
+                >
+              </label>
+            </form>
+            <b-row>
+              <b-col>
+                <b-container>
+                  <div v-for="(gallerysForShow,index) in gallerysForShow" :key="gallerysForShow.name">
+                    <div class="gallerys-box objact-scale">
+                      <img
+                        :src="gallerysForShow"
+                        class="gallerys-image"
+                        style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);position:relative;"
+                      >
+                      <div class="item-on-gallerys">
+                        <b-button class="bgred" @click="removeGallerys(index)">X</b-button>
+                      </div>
+                    </div>
+                  </div>
+                </b-container>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+        <b-row>
+          <b-col>
+            <h5 class="fontth">วีดีโอ</h5>
+            <div v-if="!marker_img1">
+                <form ref="videoShow" class="input-none" enctype="multipart/form-data">
+                  <label for="vdoUpload" class="button-upload mt-2" >
+                    <h5 class="text-on-btn-upload">
+                      <i class="fas fa-upload"></i>
+                    </h5>
+                  </label>
+                  <input
+                    class="input-none"
+                    type="file"
+                    name="vdo"
+                    id="vdoUpload"
+                    ref="vdoUpload"
+                    @change="onFileChangeToVideo"
+                    accept=".avi,.flv,.mov,.mp4,.wmv,.3gp,.mpg"
+                  >
+                </form>
+              </div>
+              <div v-else class="mb-5">
+              <video width="100%" controls>
+                <source :src="marker_img1" type="video/mp4">
+              </video>
+              <b-button @click="removeVideo" class="yr-button mt-2 mb-2">Remove Video</b-button>
+            </div>
+          </b-col>
+          <b-col>
+            <h5 class="fontth">รูป</h5>
+            <form ref="gallerys" enctype="multipart/form-data">
+              <label class="button-upload input-none">
+                <h5 class="text-on-btn-upload">
+                  <i class="fas fa-upload"></i>
+                </h5>
+                <input
+                  type="file"
+                  ref="gallerysData"
+                  name="gallerys[]"
+                  id="filesToUpload"
+                  @change="setDataGallerys"
+                  accept=".png, .jpg, .jpeg, .gif, .tif"
+                >
+              </label>
+            </form>
+            <b-row>
+              <b-col>
+                <b-container>
+                  <div v-for="(gallerysForShow,index) in gallerysForShow" :key="gallerysForShow.name">
+                    <div class="gallerys-box objact-scale">
+                      <img
+                        :src="gallerysForShow"
+                        class="gallerys-image"
+                        style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);position:relative;"
+                      >
+                      <div class="item-on-gallerys">
+                        <b-button class="bgred" @click="removeGallerys(index)">X</b-button>
+                      </div>
+                    </div>
+                  </div>
+                </b-container>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+      <!-- </div> -->
+      <b-row>
+        <b-container>
+          <div class="add-btn center right" @click="addItem()">
+            <h1 class="item-in-add">+</h1>
           </div>
-        </b-col>
+          <!-- <h5 class="right fontth ml-3 mr-3 mt-4">เพิ่มรูปและวีดีโอ</h5> -->
+          <!-- <vs-button @click="openAlert('danger')" color="danger" type="flat">Alert Danger</vs-button> -->
+        </b-container>
+      </b-row>
+      <b-row>
         <b-col>
           <h4 class="fontth">ข้อมูลเพิ่มเติม</h4>
                 <b-form-textarea id="textarea1"
@@ -43,96 +170,52 @@
             </b-form-textarea>
         </b-col>
       </b-row>
-    <!-- <v-uploader :multiple="true" language='en' @done="uploadDone" ></v-uploader> -->
-    <b-row >
-      <h5 class="center">อัพโหลดรูปภาพที่ต้องการให้แสดงผล AR</h5>
-        <b-container>
-          <form ref="gallerys" enctype="multipart/form-data">
-                    <!-- <label for="file-upload" class="button-upload mt-2">
-                                                  <h5 class="text-on-btn-upload"><i class="fas fa-upload"></i></h5>
-                                              </label>
-                    <input class="input-none " type="file" name="files" id="file-upload"  ref="file" multiple />-->
-                    <label class="button-upload input-none">
-                      <h5 class="text-on-btn-upload">
-                        <i class="fas fa-upload"></i>
-                      </h5>
-                      <input
-                        type="file"
-                        ref="gallerysData"
-                        name="gallerys[]"
-                        id="filesToUpload"
-                        @change="setDataGallerys"
-                        multiple="multiple"
-                        accept=".png, .jpg, .jpeg, .gif, .tif"
-                      >
-                    </label>
-                  </form>
-                  <b-row>
-                    <b-col>
-                      <b-container>
-                        <div v-for="(gallerysForShow,index) in gallerysForShow" :key="gallerysForShow.name">
-                          <div class="gallerys-box">
-                            <img
-                              :src="gallerysForShow"
-                              class="gallerys-image"
-                              style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);position:relative;"
-                            >
-                            <div class="item-on-gallerys">
-                              <b-button class="bgred" @click="removeGallerys(index)">X</b-button>
-                            </div>
-                          </div>
-                        </div>
-                      </b-container>
-                    </b-col>
-                  </b-row>
-        </b-container>
-    </b-row>
-    <div>
-      <b-button class="yr-button right mt-2 mb-5" @click="checkInputData()">สั่งทำ</b-button>
-      <!-- <b-button class="yr-button right">ยกเลิก</b-button> -->
-    </div>
-    <b-modal ref="CheckData" hide-footer title="ตรวจสอบข้อมูล" size="lg">
       <div>
-        <b-row>
-          <!-- <b-col>
+        <b-button class="yr-button right mt-2 mb-5" @click="checkInputData()">สั่งทำ</b-button>
+        <!-- <b-button class="yr-button right">ยกเลิก</b-button> -->
+      </div>
+      <b-modal ref="CheckData" hide-footer title="ตรวจสอบข้อมูล" size="lg">
+        <div>
+          <b-row>
+            <!-- <b-col>
             <div class="bot-border mb-2">
               <h5>ราคาสร้างสรรค์งาน</h5>
             </div>
             <p>{{defaultPriceFormat}} บาท</p>
-          </b-col> -->
-          <b-col>
-            <div class="bot-border mb-2">
-              <h5>ราคาต่อรูปภาพ</h5>
-            </div>
-            <p>150 บาท</p>
-          </b-col>
-          <b-col>
-            <div class="bot-border mb-2">
-              <h5>จำนวนรูปที่อัพโหลด</h5>
-            </div>
-            <p>{{gallerys.length}}</p>
-          </b-col>
-          <b-col>
-            <div class="bot-border mb-2">
-              <h5>รวม</h5>
-            </div>
-            <p>{{allPrice}} บาท</p>
-            <!-- <div class="bot-border mb-2"><h5>รวมราคาปุ่ม</h5></div>
-            <p>{{cardBntPrice}} บาท</p>-->
-            <!-- <div class="bot-border mb-2"><h5>จำนวนปุ่ม</h5></div>
-            <p>{{countBtn}} ปุ่ม</p>-->
-          </b-col>
-        </b-row>
-        <p class="cred">*หมายเหตุ งานจะเริ่มดำเนินต่อเมื่อชำระเงินเสร็จสิ้น</p>
-        <b-button class="yr-button right ml-3" @click="createOrder()">ยืนยัน</b-button>
-        <b-button class="yr-button right bgblack" @click="cancel()">ยกเลิก</b-button>
-      </div>
-    </b-modal>
-    <b-modal ref="CheckLogin" hide-footer title="กรุณาเข้าสู่ระบบ" size="lg">
-      <div>
-        <Signin></Signin>
-      </div>
-    </b-modal>
+            </b-col>-->
+            <b-col>
+              <div class="bot-border mb-2">
+                <h5>ราคาต่อรูปภาพ</h5>
+              </div>
+              <p>150 บาท</p>
+            </b-col>
+            <b-col>
+              <div class="bot-border mb-2">
+                <h5>จำนวนรูปที่อัพโหลด</h5>
+              </div>
+              <p>{{gallerys.length}}</p>
+            </b-col>
+            <b-col>
+              <div class="bot-border mb-2">
+                <h5>รวม</h5>
+              </div>
+              <p>{{allPrice}} บาท</p>
+              <!-- <div class="bot-border mb-2"><h5>รวมราคาปุ่ม</h5></div>
+              <p>{{cardBntPrice}} บาท</p>-->
+              <!-- <div class="bot-border mb-2"><h5>จำนวนปุ่ม</h5></div>
+              <p>{{countBtn}} ปุ่ม</p>-->
+            </b-col>
+          </b-row>
+          <p class="cred">*หมายเหตุ งานจะเริ่มดำเนินต่อเมื่อชำระเงินเสร็จสิ้น</p>
+          <b-button class="yr-button right ml-3" @click="createOrder()">ยืนยัน</b-button>
+          <b-button class="yr-button right bgblack" @click="cancel()">ยกเลิก</b-button>
+        </div>
+      </b-modal>
+      <b-modal ref="CheckLogin" hide-footer title="กรุณาเข้าสู่ระบบ" size="lg">
+        <div>
+          <Signin></Signin>
+        </div>
+      </b-modal>
     </b-container>
     <div class="vld-parent">
       <loading
@@ -148,36 +231,76 @@
 </template>
 <script>
 /* eslint-disable */
-const axios = require('axios');
-const moment = require('moment');
+const axios = require("axios");
+const moment = require("moment");
 import Signin from "@/components/Signin";
 
-var numeral = require('numeral');
+var numeral = require("numeral");
 import Loading from "vue-loading-overlay";
 export default {
-  name: 'createPhotobook',
+  name: "createPhotobook",
   components: {
-      Loading,
-    Signin,
-    },
-  data(){
-    return{
-      video: '',
-      images: [],
-      gallerys:[],
-      gallerysForShow:[],
-      allPrice: 0,
-      commentsData: '',
-      userData: '',
-      isLoading: false,
-      videoData: '',
-      showDismissibleAlert: false
-    }
+    Loading,
+    Signin
   },
-  methods:{
+  data() {
+    return {
+      video: "",
+      images: [],
+      gallerys: [],
+      gallerysForShow: [],
+      allPrice: 0,
+      commentsData: "",
+      userData: "",
+      isLoading: false,
+      videoData: "",
+      showDismissibleAlert: false,
+      dataTest: "",
+      marker_img1: "",
+      marker_vdo1: "",
+      marker_img2: "",
+      marker_vdo2: "",
+      marker_img3: "",
+      marker_vdo3: "",
+      marker_img4: "",
+      marker_vdo4: "",
+      marker_img5: "",
+      marker_vdo5: "",
+      countItem: 1,
+      colorAlert: 'primary',
+      activeAlert:false,
+    };
+  },
+  methods: {
+    addItem(){
+      if(this.countItem < 5 ){
+        this.countItem += 1
+      }else
+      {
+        this.openAlert()
+      }
+      // console.log('count',this.countItem)
+    },
+    openAlert(){
+      this.colorAlert = 'danger'
+      this.$vs.dialog({
+        color:this.colorAlert,
+        title: 'ผิดพลาด',
+        text: 'เพิ่มได้ไม่เกิน 5 รูป 5วีดีโอ',
+        acceptText: 'ตกลง'
+        // accept:this.acceptAlert
+      })
+    },
+    successUpload() {
+      this.$vs.notify({
+        color: "success",
+        title: "Upload Success",
+        text: "Lorem ipsum dolor sit amet, consectetur"
+      });
+    },
     onFileChangeToVideo(e) {
-        this.videoData = this.$refs.vdoUpload.files[0];
-      console.log('videoData----'+this.videoData)
+      this.videoData = this.$refs.vdoUpload.files[0];
+      console.log("videoData----" + this.videoData);
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
       this.createVideo(files[0]);
@@ -188,21 +311,20 @@ export default {
       var vm = this;
 
       reader.onload = e => {
-        vm.video = e.target.result;
+        vm.marker_img1 = e.target.result;
       };
       reader.readAsDataURL(file);
     },
     removeVideo: function(e) {
-      this.video = "";
+      this.marker_img1 = "";
     },
     setDataGallerys(e) {
       var data = this.$refs.gallerysData.files;
       // this.gallerys = this.$refs.gallerysData.files;
       data = Array.from(data);
-    for (let i = 0; i < data.length; i++) {
-      this.gallerys.push(data[i])
-      
-    }
+      for (let i = 0; i < data.length; i++) {
+        this.gallerys.push(data[i]);
+      }
       console.log(this.gallerys);
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
@@ -223,23 +345,27 @@ export default {
         this.isLoading = false;
       }, 300);
     },
-    removeGallerys(image){
-      console.log('remove',image)
-      this.gallerysForShow.splice(image,1)
-      this.gallerys.splice(image,1)
-      console.log('gallerys',this.gallerys)
+    removeGallerys(image) {
+      console.log("remove", image);
+      this.gallerysForShow.splice(image, 1);
+      this.gallerys.splice(image, 1);
+      console.log("gallerys", this.gallerys);
     },
     checkInputData() {
       if (this.$session.get("session") == true) {
-        if(this.gallerys.length == 0 ||this.gallerys.length == '0'||this.video == ''){
-          this.showDismissibleAlert=true
-          window.scrollTo({ top: 0, behavior: 'smooth' })
-        }else{
-          this.showDismissibleAlert=false
-          this.allPrice = 150* parseInt(this.gallerys.length);
-        var c = numeral(this.allPrice).format("0,0");
-        this.allPrice = c;
-        this.$refs.CheckData.show();
+        if (
+          this.gallerys.length == 0 ||
+          this.gallerys.length == "0" ||
+          this.video == ""
+        ) {
+          this.showDismissibleAlert = true;
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else {
+          this.showDismissibleAlert = false;
+          this.allPrice = 150 * parseInt(this.gallerys.length);
+          var c = numeral(this.allPrice).format("0,0");
+          this.allPrice = c;
+          this.$refs.CheckData.show();
         }
       } else {
         this.isLoading = false;
@@ -256,13 +382,13 @@ export default {
       const getUserData = this.$session.get("sessionData");
       // this.allPrice = this.cardBntPrice + this.defaultPrice;
       this.userData = getUserData[0];
-      console.log('user',this.userData)
+      console.log("user", this.userData);
       this.gallerys = Object.assign(this.gallerys);
       var theData = new FormData();
       theData.append("user_id", this.userData.user_id);
       theData.append("fileToUpload", this.videoData);
-      theData.append("orther",this.commentsData)
-      console.log('video',this.videoData)
+      theData.append("orther", this.commentsData);
+      console.log("video", this.videoData);
       for (var i = 0; i < this.gallerys.length; i++) {
         let file = this.gallerys[i];
 
@@ -272,18 +398,25 @@ export default {
         method: "post",
         url:
           "https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_photobook.php",
+        // "https://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php?user_id=5c66b996c80e3",
         data: theData,
         config: { headers: { "Content-Type": "multipart/form-data" } }
       })
         .then(result => {
-          console.log('sccess',JSON.stringify(result));
+          console.log("sccess", JSON.stringify(result));
           console.log("sccess");
           console.log("pushData", result.data);
           this.$router.push({
             name: "PhotobookBill",
-            params: { orderData: result.data,userData: this.userData,video: this.video,gallerys: this.gallerysForShow ,price: this.allPrice}
+            params: {
+              orderData: result.data,
+              userData: this.userData,
+              video: this.video,
+              gallerys: this.gallerysForShow,
+              price: this.allPrice
+            }
           });
-          window.scrollTo({ top: 0, behavior: 'smooth' })
+          window.scrollTo({ top: 0, behavior: "smooth" });
           this.isLoading = false;
         })
         .catch(error => {
@@ -291,8 +424,7 @@ export default {
           this.isLoading = false;
           this.$refs.reData.show();
         });
-    },
-  },
-  
-}
+    }
+  }
+};
 </script>

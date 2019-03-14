@@ -13,7 +13,7 @@
                 id="carousel1"
                 class="mt-4 object-slide-top-to"
                 style="width:100%;max-width:550px;border-radius:10px"
-                controlso
+                controls
                 indicators
                 background="#fff"
                 :interval="4000"

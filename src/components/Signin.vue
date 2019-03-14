@@ -4,9 +4,9 @@
     <div class="helper " >
       <b-card text-variant="black" header="Sign in" class="text-center signin-group">
         <!-- <b-form-input id='email-input' v-model="email" type="text" placeholder="E-mail" class="signin-input"></b-form-input> -->
-        <vs-input label="E-mail" id='email-input'  :danger="errorMail" :danger-text="eEmail"  placeholder="E-mail" v-model="email" style="width:100%;text-align:left"/>
+        <vs-input @keyup.enter="checkForm()" label="E-mail" id='email-input'  :danger="errorMail" :danger-text="eEmail"  placeholder="E-mail" v-model="email" style="width:100%;text-align:left"/>
         <div v-if="eEmail != ''" class="cred err-text" >{{errorM()}}</div>
-        <vs-input label="Password" :danger="errorPass" :danger-text="ePassword" class="mb-3" type="password" placeholder="Password" v-model="password" style="width:100%;text-align:left"/>
+        <vs-input @keyup.enter="checkForm()" label="Password" :danger="errorPass" :danger-text="ePassword" class="mb-3" type="password" placeholder="Password" v-model="password" style="width:100%;text-align:left"/>
         <!-- <b-form-input v-model="password" type="password" placeholder="Password" class="signin-input"></b-form-input> -->
         <div v-if="ePassword != ''" class="cred err-text">{{errorP()}}</div>
         <!-- <div v-if="checkError" class="cred">{{errors}}</div> -->

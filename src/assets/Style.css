@@ -1,6 +1,20 @@
 @import url('https://fonts.googleapis.com/css?family=Prompt:200,300,400,700');
 @import 'vue-loading-overlay/dist/vue-loading.css';
 @import 'vue-good-table/dist/vue-good-table.css';
+::-webkit-scrollbar {
+    width: 5px;
+}
+::-webkit-scrollbar-track {
+background: #f1f1f1; 
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+background: #888;
+border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #777; 
+}  
 .con1364{
     width: 1364px !important;
 }
@@ -51,6 +65,18 @@ h1, h2, h3, h4, h5{
 .yr-select{
     border-radius: 1000px ;
     border-color: #61a0ff;
+}
+.yr-bt-remove{
+    border-radius: 1000px !important;
+    background: #FF3D36 !important;
+    border-color: #FF3D36 !important;
+    min-width: 40px !important;
+}
+.yr-bt-remove:hover{
+    border-radius: 1000px !important;
+    background: #FF6D61 !important;
+    border-color: #FF6D61 !important;
+    min-width: 40px !important;
 }
 .yr-button{
     border-radius: 1000px !important;
@@ -394,6 +420,7 @@ ul{
     padding-bottom: 60px;
     margin-bottom: 30px;
     border-radius: 10px;
+    padding: 10px;
 }
 /* input[type="file"] {
     display: none;
@@ -425,7 +452,7 @@ ul{
 }
 
 .image-show{
-    width: 400px;
+    width: 250px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);
     border: 1px solid rgba(0, 0, 0, 0.10);
     margin-left: auto;

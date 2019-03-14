@@ -17,6 +17,9 @@ import CreatePhotobook from '@/components/CreatePhotobook'
 import PageNotFound from '@/components/PageNotFound'
 import Verify from '@/components/verify'
 import PhotobookBill from '@/components/PhotobookBill'
+import CreateCard from '@/components/CreateCard'
+import CardPackage1 from '@/components/CardPackage1'
+import CardPackage2 from '@/components/CardPackage2'
 
 
 Vue.use(Router)
@@ -56,7 +59,8 @@ export default new Router({
       path: '/Create',
       name: 'Create',
       component: Create,
-      props: true
+      props: true,
+      
     },
     {
       path: '/Payment',
@@ -110,6 +114,37 @@ export default new Router({
       name: 'PhotobookBill',
       component: PhotobookBill,
       props: true
+    },
+    {
+      path: '/CreateCard',
+      name: 'CreateCard',
+      component: CreateCard,
+      props: true,
+      // children: [{
+      //   path: '/CardPackage1',
+      //   name: 'CardPackage1',
+      //   component: CardPackage1,
+      //   props: true
+      // },
+      // // {
+      // //   path: '/CardPackage1',
+      // //   name: 'CardPackage1',
+      // //   component: CardPackage1,
+      // //   props: true
+      // // }
+      // ]
+    },
+    {
+      path: '/CardPackage1',
+        name: 'CardPackage1',
+        component: CardPackage1,
+        props: true
+    },
+    {
+      path: '/CardPackage2',
+        name: 'CardPackage2',
+        component: CardPackage2,
+        props: true
     },
     { path: '*', component: PageNotFound, }
     
