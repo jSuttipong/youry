@@ -16,6 +16,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 // import vUploader from 'v-uploader';
 import VueScrollReveal from 'vue-scroll-reveal';
+import VueCookies from 'vue-cookies'
 
 // USE
 Vue.use(VueSession)
@@ -35,6 +36,8 @@ Vue.use(VueMouseParallax)
 Vue.use(VueAxios, axios)
 // Vue.use(vUploader);
 Vue.use(VueScrollReveal,{delay: 250,easing: 'ease-in'});
+Vue.use(VueCookies)
+VueCookies.config('7d')
 
 // CSS
 import 'bootstrap/dist/css/bootstrap.css'

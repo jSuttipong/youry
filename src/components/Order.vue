@@ -102,15 +102,18 @@
                     </b-row>
                         <div>
                             <h5 class="mt-3">รูป Gallerys</h5>
-                            <div v-for="galleriesData in passData.galleries" :key='galleriesData.gallery_url' style="width:100%; height:auto">
+                            <!-- <div v-for="galleriesData in passData.galleries" :key='galleriesData.gallery_url' style="width:100%; height:auto">
                                 <img :src="galleriesData.gallery_url" class="left gallerys-image" style="width:20%;height:120px;margin: 5px">
-                            </div>
+                            </div> -->
+                            <vs-images hover="scale">
+                                <vs-image style="overflow:auto" v-for="galleriesData in passData.galleries" :key="galleriesData.gallery_url" :src="galleriesData.gallery_url" />
+                            </vs-images>
                         </div>
                     </div>
                     <div v-else>
                         <h5>รูป marker</h5>
                         <b-row>
-                            <b-container>
+                        <b-container>
                         <img v-for="imgUrl in imgUrl" :key="imgUrl.marker_img" :src="imgUrl.marker_img" class="gallerys-image" style="width:30%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);">
                         </b-container>
                         </b-row>
@@ -209,13 +212,14 @@ export default {
     },
     mounted(){
         this.isLoading = true;
-       const getUserData = this.$session.get('sessionData')
-       this.userData = getUserData[0]
-       console.log('userData', this.userData)
+        this.$cookies.get('token').user_id
+    //    const getUserData = this.$session.get('sessionData')
+    //    this.userData = getUserData[0]
+       console.log('userData', this.$cookies.get('token').user_id)
     //    console.log(this.userData)
         var querystring = require('querystring');
         var chackEP = querystring.stringify({
-            user_id: this.userData.user_id
+            user_id: this.$cookies.get('token').user_id
         });
 
         const config = {
@@ -238,7 +242,7 @@ export default {
         // axios.post('http://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', chackEP, config)
         axios.get('https://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php', {
     params: {
-      user_id: this.userData.user_id
+      user_id: this.$cookies.get('token').user_id
     }
   })
           .then((result) => {

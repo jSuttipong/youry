@@ -127,6 +127,8 @@ const axios = require('axios');
               // this.isLoading = true;
               // this.render()
               console.log('Login success')
+              this.$cookies.set("token",result.data[0])
+              console.log(this.$cookies.get('token').user_fname)
               this.$session.start()
               // this.$session.set('session', result.data)
               this.$session.set('session', true)
