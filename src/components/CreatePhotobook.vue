@@ -11,7 +11,7 @@
       <vs-divider color="primary">
         <h2 class="center">สร้าง photobook AR ของคุณ</h2>
       </vs-divider>
-      <b-row class="mt-5 mb-5">
+      <b-row >
       </b-row>
       <!-- <v-uploader :multiple="true" language='en' @done="uploadDone" ></v-uploader> -->
       <b-container>
@@ -19,7 +19,7 @@
       </b-container>
       <!-- <div v-for="countItem in countItem" :key="countItem"> -->
         <!-- <h5 class="fontth">รูปและวีดีโอ1</h5> -->
-        <b-row  v-for="countItem in countItem" :key="countItem" >
+        <b-row  v-for="countItem in countItem" :key="countItem" style="width:100%; border: 1px solid #EDE4E5;margin-bottom:20px;border-radius:10px;padding:5px">
           <b-col>
             <h5 class="fontth">วีดีโอ</h5>
             <div v-if="!allMarker[countItem-1].marker_vdo">
@@ -49,7 +49,8 @@
           </b-col>
           <b-col>
             <h5 class="fontth">รูป</h5>
-            <form ref="gallerys" enctype="multipart/form-data">
+            <div v-if="!allMarker[countItem-1].marker_img" class="mt-3">
+              <form ref="gallerys" enctype="multipart/form-data">
               <label class="button-upload input-none">
                 <h5 class="text-on-btn-upload">
                   <i class="fas fa-upload"></i>
@@ -59,15 +60,23 @@
                   ref="gallerysData"
                   name="gallerys[]"
                   id="filesToUpload"
-                  @change="setDataGallerys"
+                  @change="setMarker($event,countItem-1)"
                   accept=".png, .jpg, .jpeg, .gif, .tif"
                 >
               </label>
             </form>
-            <b-row>
+            </div>
+
+            <b-row v-else>
               <b-col>
                 <b-container>
-                  <div v-for="(gallerysForShow,index) in gallerysForShow" :key="gallerysForShow.name">
+                  <div class="gallerys-box objact-scale">
+                    <img :src="allMarker[countItem-1].marker_img" class="gallerys-image">
+                  <div class="item-on-gallerys">
+                        <b-button class="bgred" @click="removeMarker(countItem-1)">X</b-button>
+                      </div>
+                  </div>
+                  <!-- <div v-for="(gallerysForShow,index) in gallerysForShow" :key="gallerysForShow.name">
                     <div class="gallerys-box objact-scale">
                       <img
                         :src="gallerysForShow"
@@ -78,11 +87,14 @@
                         <b-button class="bgred" @click="removeGallerys(index)">X</b-button>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                 </b-container>
               </b-col>
             </b-row>
           </b-col>
+          <div v-if="countItem-1 != 0" class="right">
+              <b-button class="bgblue" style="border-radius:1000px" @click="removeCell(countItem-1)" >X</b-button>
+          </div>
         </b-row>
         <!-- <Signin></Signin> -->
         <!-- <TemplateBook></TemplateBook> -->
@@ -108,7 +120,8 @@
         </b-col>
       </b-row>
       <div>
-        <b-button class="yr-button right mt-2 mb-5" @click="checkInputData()">สั่งทำ</b-button>
+        <b-button class="yr-button right mt-2 mb-5" @click="createOrder(countItem)">สั่งทำ</b-button>
+        <!-- <b-button class="yr-button right mt-2 mb-5" @click="checkInputData()">สั่งทำ</b-button> -->
         <!-- <b-button class="yr-button right">ยกเลิก</b-button> -->
       </div>
       <b-modal ref="CheckData" hide-footer title="ตรวจสอบข้อมูล" size="lg">
@@ -217,12 +230,37 @@ export default {
           marker_vdo: "",
         }
       ],
+      setDataMarker: [
+        {
+          marker_img: "",
+          marker_vdo: "",
+        },
+        {
+          marker_img: "",
+          marker_vdo: "",
+        },
+        {
+          marker_img: "",
+          marker_vdo: "",
+        },
+        {
+          marker_img: "",
+          marker_vdo: "",
+        },
+        {
+          marker_img: "",
+          marker_vdo: "",
+        }
+      ],
       countItem: 1,
       colorAlert: 'primary',
       activeAlert:false,
     };
   },
   methods: {
+    removeCell(count){
+      this.countItem -=1
+    },
     addItem(){
       if(this.countItem < 5 ){
         this.countItem += 1
@@ -250,8 +288,9 @@ export default {
       });
     },
     onFileChangeToVideo(e,count) {
-      console.log(e)
-      this.videoData = this.$refs.vdoUpload[0].files[0];
+      // console.log(e)
+      // this.videoData = this.$refs.vdoUpload[0].files[0];
+      this.setDataMarker[count].marker_vdo = this.$refs.vdoUpload[0].files[0];
       console.log("videoData----" , this.videoData);
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
@@ -269,40 +308,52 @@ export default {
     },
     removeVideo: function(count) {
       this.allMarker[count].marker_vdo = "";
+      this.setDataMarker[count].marker_vdo = "";
     },
-    setDataGallerys(e) {
-      var data = this.$refs.gallerysData.files;
-      // this.gallerys = this.$refs.gallerysData.files;
-      data = Array.from(data);
-      for (let i = 0; i < data.length; i++) {
-        this.gallerys.push(data[i]);
-      }
-      console.log(this.gallerys);
+    setMarker(e,count){
+      this.setDataMarker[count].marker_img = this.$refs.gallerysData[0].files[0];
+      // console.log("videoData----" , this.videoData);
       var files = e.target.files || e.dataTransfer.files;
       if (!files.length) return;
-      for (let i = 0; i < files.length; i++) {
-        this.createGallery(files[i]);
-      }
+      this.createGallery(files[0],count);
     },
-    createGallery(file) {
+    // setDataGallerys(e) {
+    //   var data = this.$refs.gallerysData.files;
+    //   // this.gallerys = this.$refs.gallerysData.files;
+    //   data = Array.from(data);
+    //   for (let i = 0; i < data.length; i++) {
+    //     this.gallerys.push(data[i]);
+    //   }
+    //   console.log(this.gallerys);
+    //   var files = e.target.files || e.dataTransfer.files;
+    //   if (!files.length) return;
+    //   for (let i = 0; i < files.length; i++) {
+    //     this.createGallery(files[i]);
+    //   }
+    // },
+    createGallery(file,count) {
       this.isLoading = true;
       setTimeout(() => {
         var image = new Image();
         var reader = new FileReader();
         var vm = this;
         reader.onload = e => {
-          vm.gallerysForShow.push(e.target.result);
+          vm.allMarker[count].marker_img = e.target.result;
         };
         reader.readAsDataURL(file);
         this.isLoading = false;
       }, 300);
     },
-    removeGallerys(image) {
-      console.log("remove", image);
-      this.gallerysForShow.splice(image, 1);
-      this.gallerys.splice(image, 1);
-      console.log("gallerys", this.gallerys);
+    removeMarker(count){
+      this.allMarker[count].marker_img = "";
+      this.setDataMarker[count].marker_img = "";
     },
+    // removeGallerys(image) {
+    //   console.log("remove", image);
+    //   this.gallerysForShow.splice(image, 1);
+    //   this.gallerys.splice(image, 1);
+    //   console.log("gallerys", this.gallerys);
+    // },
     checkInputData() {
       if (this.$session.get("session") == true) {
         if (
@@ -314,7 +365,7 @@ export default {
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else {
           this.showDismissibleAlert = false;
-          this.allPrice = 150 * parseInt(this.gallerys.length);
+          this.allPrice = 500 * parseInt(this.gallerys.length);
           var c = numeral(this.allPrice).format("0,0");
           this.allPrice = c;
           this.$refs.CheckData.show();
@@ -327,29 +378,53 @@ export default {
     cancel() {
       this.$refs.CheckData.hide();
     },
-    createOrder() {
+    createOrder(count) {
       // var userData = this.$session.getAll()
       this.$refs.CheckData.hide();
       this.isLoading = true;
-      const getUserData = this.$session.get("sessionData");
+      // const getUserData = this.$session.get("sessionData");
+      const getUserData = this.$cookies.get('token')
       // this.allPrice = this.cardBntPrice + this.defaultPrice;
-      this.userData = getUserData[0];
+      console.log(this.setDataMarker)
+      for (let i = 0; i <= count-1; i++) {
+        this.setDataMarker[i].marker_img
+      }
+      //-----------------------------------
+      this.userData = getUserData;
       console.log("user", this.userData);
       this.gallerys = Object.assign(this.gallerys);
       var theData = new FormData();
-      theData.append("user_id", this.userData.user_id);
-      theData.append("fileToUpload", this.videoData);
-      theData.append("orther", this.commentsData);
-      console.log("video", this.videoData);
-      for (var i = 0; i < this.gallerys.length; i++) {
-        let file = this.gallerys[i];
 
-        theData.append("markers[" + i + "]", file);
-      }
+      theData.append("user_id", this.userData.user_id);
+      // theData.append("fileToUpload", this.videoData);
+      theData.append("orther", this.commentsData);
+      // for (let i = 0; i <= count-1; i++) {
+      //   theData.append("marker_img"+i,this.setDataMarker[i].marker_img)
+      //   theData.append("marker_vdo"+i,this.setDataMarker[i].marker_vdo)
+      // }
+      theData.append("marker_img1",this.setDataMarker[0].marker_img)
+      theData.append("marker_vdo1",this.setDataMarker[0].marker_vdo)
+      theData.append("marker_img2",this.setDataMarker[1].marker_img)
+      theData.append("marker_vdo2",this.setDataMarker[1].marker_vdo)
+      theData.append("marker_img3",this.setDataMarker[2].marker_img)
+      theData.append("marker_vdo3",this.setDataMarker[2].marker_vdo)
+      theData.append("marker_img4",this.setDataMarker[3].marker_img)
+      theData.append("marker_vdo4",this.setDataMarker[3].marker_vdo)
+      theData.append("marker_img5",this.setDataMarker[4].marker_img)
+      theData.append("marker_vdo5",this.setDataMarker[4].marker_vdo)
+      for (var value of theData.values()) {
+   console.log('form',value); 
+}      // console.log("video", this.videoData);
+      // for (var i = 0; i < this.gallerys.length; i++) {
+      //   let file = this.gallerys[i];
+
+      //   theData.append("markers[" + i + "]", file);
+      // }
       axios({
         method: "post",
         url:
-          "https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_photobook.php",
+          "https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_photobook3.php",
+          // '',
         // "https://fishyutt.xyz/dev/admin/files/api/users_api/order_user_detail.php?user_id=5c66b996c80e3",
         data: theData,
         config: { headers: { "Content-Type": "multipart/form-data" } }
@@ -360,13 +435,20 @@ export default {
           console.log("pushData", result.data);
           this.$router.push({
             name: "PhotobookBill",
-            params: {
+            params:{
               orderData: result.data,
               userData: this.userData,
               video: this.video,
               gallerys: this.gallerysForShow,
               price: this.allPrice
             }
+            // params: {
+            //   orderData: result.data,
+            //   userData: this.userData,
+            //   video: this.video,
+            //   gallerys: this.gallerysForShow,
+            //   price: this.allPrice
+            // }
           });
           window.scrollTo({ top: 0, behavior: "smooth" });
           this.isLoading = false;

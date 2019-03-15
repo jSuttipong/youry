@@ -51,6 +51,7 @@ import './assets/Styleres.css';
 import './assets/Styleimagegalley.css'
 import './assets/StyleAni.css'
 import './assets/StyleProductIcon.css'
+import './assets/StyleCommend.css'
 
 Vue.config.productionTip = false
 

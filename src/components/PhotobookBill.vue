@@ -6,7 +6,7 @@
                 <div>
                     <b-row>
                         <b-col>
-                            <h3 >เลขที่การสั่งทำ {{orderData[0].order_id}}</h3>
+                            <h3 >เลขที่การสั่งทำ {{userData.user_id}}</h3>
                         <b-row class="mt-4">
                             <b-col>
                                 <div class="bot-border mb-2"><h5>ผู้สั่งทำ</h5></div>
@@ -18,7 +18,7 @@
                                 <div class="bot-border mb-2"><h5>วันที่สั่งทำ</h5></div>
                                 <p>{{date}}</p>
                                 <div class="bot-border mb-2"><h5>ราคา</h5></div>
-                                <p>{{price}}</p>
+                                <p>{{orderData[0].price}}</p>
                             </b-col>
                             <b-col>
                                 <div class="bot-border mb-2"><h5>สถานะ</h5></div>
@@ -35,16 +35,32 @@
                 <h2 class="pt-4 mb-4 center">รายละเอียดการ์ด</h2>
                 <b-row>
                     <b-col>
+                        <!-- {{orderData[0]}} -->
                     <div class="bot-border mb-3"><h5>วีดีโอ</h5></div>
-                    <video width="100%" controls style="center">
+                    <div v-for="dataSet in dataSet" :key="dataSet.vdo_url">
+                  <video v-if="dataSet.vdo_url" width="70%" height="200px" class="mt-3" controls>
+                    <source :src="dataSet.vdo_url" type="video/mp4">
+                  </video>
+                </div>
+                    <!-- <video width="100%" controls style="center">
                       <source :src="video" type="video/mp4">
-                    </video>
+                    </video> -->
                     </b-col>
                     <b-col>
                     <div class="bot-border mb-3"><h5>รูปMarker</h5></div>
-                        <div v-for="gallerys in gallerys" :key="gallerys.gallery_name">
+                    <b-row v-for="dataSet in dataSet" :key="dataSet.img_url">
+                  <b-col>
+                    <img
+                    v-if="dataSet.img_url"
+                      :src="dataSet.img_url"
+                      class="gallerys-image mt-3"
+                      style="width:50%;box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.10);border: 1px solid rgba(0, 0, 0, 0.10);"
+                    >
+                  </b-col>
+                </b-row>
+                        <!-- <div v-for="gallerys in gallerys" :key="gallerys.gallery_name">
                     <img :src="gallerys" class="left mt-3 mr-3 gallerys-image" style="width:160px;height:160px">
-                </div>
+                </div> -->
                     </b-col>
                 </b-row>
                 <b-row>
@@ -65,13 +81,47 @@ export default {
     },
     data() {
         return {
-            date: ''
+            date: '',
+            dataSet: [
+                {
+                    img_url: '',
+                    vdo_url: ''
+                },
+                {
+                    img_url: '',
+                    vdo_url: ''
+                },
+                {
+                    img_url: '',
+                    vdo_url: ''
+                },
+                {
+                    img_url: '',
+                    vdo_url: ''
+                },
+                {
+                    img_url: '',
+                    vdo_url: ''
+                },
+            ]
         }
     },
     mounted(){
         moment.locale('th');
         this.date = new Date()
-        this.date = moment(this.date).format("D MMMM YYYY"); 
+        this.date = moment(this.date).format("D MMMM YYYY");
+           this.dataSet[0].img_url = this.orderData[0].img1_url
+           this.dataSet[0].vdo_url = this.orderData[0].vdo1_url
+           this.dataSet[1].img_url = this.orderData[0].img2_url
+           this.dataSet[1].vdo_url = this.orderData[0].vdo2_url
+           this.dataSet[2].img_url = this.orderData[0].img3_url
+           this.dataSet[2].vdo_url = this.orderData[0].vdo3_url
+           this.dataSet[3].img_url = this.orderData[0].img4_url
+           this.dataSet[3].vdo_url = this.orderData[0].vdo4_url
+           this.dataSet[4].img_url = this.orderData[0].img5_url
+           this.dataSet[4].vdo_url = this.orderData[0].vdo5_url
+        
+        // this.orderData
     },
     methods:{
         goPayment(){

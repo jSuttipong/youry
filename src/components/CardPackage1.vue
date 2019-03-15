@@ -147,6 +147,45 @@
             </b-row>
         </div>
         </b-container>
+        <b-modal ref="CheckData" hide-footer title="ตรวจสอบข้อมูล" size="lg">
+      <div>
+        <b-row>
+          <!-- <b-col>
+            <div class="bot-border mb-2">
+              <h5>ราคาสร้างสรรค์งาน</h5>
+            </div>
+            <p>{{defaultPriceFormat}} บาท</p>
+          </b-col> -->
+          <!-- <b-col>
+            <div class="bot-border mb-2">
+              <h5>ราคาต่อปุ่ม</h5>
+            </div>
+            <p>500 บาท</p>
+          </b-col> -->
+          <b-col>
+            <div class="bot-border mb-2">
+              <h5>ราคา Package</h5>
+            </div>
+            <p>{{allPrice}} บาท</p>
+            <!-- <div class="bot-border mb-2"><h5>รวมราคาปุ่ม</h5></div>
+            <p>{{cardBntPrice}} บาท</p>-->
+            <!-- <div class="bot-border mb-2"><h5>จำนวนปุ่ม</h5></div>
+            <p>{{countBtn}} ปุ่ม</p>-->
+          </b-col>
+        </b-row>
+        <p class="cred">*หมายเหตุ งานจะเริ่มดำเนินต่อเมื่อชำระเงินเสร็จสิ้น</p>
+        <b-button class="yr-button right ml-3" @click="createOrder()">ยืนยัน</b-button>
+        <b-button class="yr-button right bgblack" @click="cancel()">ยกเลิก</b-button>
+      </div>
+    </b-modal>
+    <b-modal ref="CheckLogin" hide-footer title="กรุณาเข้าสู่ระบบ" size="lg">
+      <div>
+        <Signin></Signin>
+      </div>
+    </b-modal>
+    <b-modal ref="reData" title="อัพโหลดข้อมูลใหม่อีกครั้ง">
+      <h3>กรุณาอัพโหลดข้อมูลใหม่อีกครั้ง</h3>
+    </b-modal>
     <!-- Loading****** -->
     <div class="vld-parent">
     <loading
@@ -162,12 +201,15 @@
 </template>
 <script >
 /* eslint-disable */
+import Signin from "@/components/Signin";
 import Loading from "vue-loading-overlay";
 import { RENDER } from "../js/Render.js";
+var numeral = require("numeral");
 const axios = require("axios");
 export default {
     components: {
-    Loading
+    Loading,
+    Signin
     },
     data(){
         return {
@@ -179,7 +221,9 @@ export default {
             gallerysForShow: [],
             gallerys: [],
             contactBtn: '',
-            commentsData: ''
+            commentsData: '',
+            allPrice: 0,
+            defaultPriceFormat: ''
         }
     },
     methods:{
@@ -250,20 +294,76 @@ export default {
             console.log('gallerys',this.gallerys)
         },
         checkInputData() {
+            if(this.$cookies.get('token')){
+
+
+            // }
     //   if (this.$session.get("session") == true) {
-    //     this.cardBntPrice = parseInt(this.cardBntPrice);
-    //     // this.allPrice = this.cardBntPrice + this.defaultPrice;
-    //     this.allPrice = 3000
-    //     console.log(this.allPrice);
-    //     var c = numeral(this.allPrice).format("0,0");
-    //     var d = numeral(this.defaultPrice).format("0,0");
-    //     this.allPrice = c;
-    //     this.defaultPriceFormat = d;
-    //     this.$refs.CheckData.show();
-    //   } else {
-    //     this.isLoading = false;
-    //     this.$refs.CheckLogin.show();
-    //   }
+        this.cardBntPrice = parseInt(this.cardBntPrice);
+        // this.allPrice = this.cardBntPrice + this.defaultPrice;
+        this.allPrice = 3000
+        console.log(this.allPrice);
+        var c = numeral(this.allPrice).format("0,0");
+        var d = numeral(this.defaultPrice).format("0,0");
+        this.allPrice = c;
+        this.defaultPriceFormat = d;
+        this.$refs.CheckData.show();
+      } else {
+        this.isLoading = false;
+        this.$refs.CheckLogin.show();
+      }
+    },
+     cancel() {
+      this.$refs.CheckData.hide();
+    },
+    createOrder() {
+      // var userData = this.$session.getAll()
+      this.$refs.CheckData.hide();
+      this.isLoading = true;
+    //   const getUserData = this.$session.get("sessionData");
+    const getUserData = this.$cookies.get('token')
+    //   this.allPrice = this.cardBntPrice + this.defaultPrice;
+      this.userData = getUserData;
+      this.gallerys = Object.assign(this.gallerys);
+      var theData = new FormData();
+      theData.append("user_id", this.userData.user_id);
+    //   theData.append("layout_id", this.countBtn);
+    //   theData.append("location", this.locationName);
+    //   theData.append("latlong", this.latlong);
+      theData.append("contact", this.contactBtn);
+      theData.append("price", 3000);
+      theData.append("orther", this.commentsData);
+      theData.append("files", this.markerData);
+      theData.append("vdo", this.videoData);
+      for (var i = 0; i < this.gallerys.length; i++) {
+        let file = this.gallerys[i];
+
+        theData.append("gallerys[" + i + "]", file);
+      }
+
+      axios({
+        method: "post",
+        url:
+          "https://fishyutt.xyz/dev/admin/files/api/orders_api/insert_order_card.php",
+        data: theData,
+        config: { headers: { "Content-Type": "multipart/form-data" } }
+      })
+        .then(result => {
+          console.log(result);
+          console.log("sccess");
+          console.log("pushData", result.data);
+          this.$router.push({
+            name: "OrderBill",
+            params: { orderData: result.data }
+          });
+          window.scrollTo({ top: 0, behavior: 'smooth' })
+          this.isLoading = false;
+        })
+        .catch(error => {
+          console.log("dataerror--------" + error);
+          this.isLoading = false;
+        //   this.$refs.reData.show();
+        });
     }
     }
 }

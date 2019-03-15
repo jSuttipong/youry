@@ -1,0 +1,16 @@
+.self-commend{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background-color: #6DCBFF;
+    position: relative;
+    padding: 10px;
+}
+.admin-commend{
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    background-color: #BDB3CC;
+    position: relative;
+    padding: 10px;
+}
