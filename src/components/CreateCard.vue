@@ -13,8 +13,8 @@
                         <b-container class="mt-4 text-in-card left">
                             <h5 class="center">Basic Package</h5>
                             <vs-divider class="pr-3 pl-3"/>
-                            <p class="ml-3">แพ็กเกจนี้ประกอบไปด้วย</p>
-                            <ul class="ml-3">
+                            <p class="ml-3">ราคา 3,000 บาท</p>
+                            <ul class="ml-3" style="margin-top: -20px">
                                 <li>
                                     • วีดีโอ 1 ไฟล์
                                 </li>
@@ -36,8 +36,8 @@
                         <b-container class="mt-4 text-in-card ">
                             <h5 class="center">For you Packages</h5>
                             <vs-divider class="pr-3 pl-3"/>
-                        <p class="ml-3">แพ็กเกจนี้ประกอบไปด้วย</p>
-                        <ul class="ml-3">
+                        <p class="ml-3">ราคา 3,500 บาท</p>
+                        <ul class="ml-3" style="margin-top: -20px">
                                 <li>
                                     • วีดีโอ 1 ไฟล์
                                 </li>
