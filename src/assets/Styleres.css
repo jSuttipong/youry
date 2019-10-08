@@ -1,0 +1,43 @@
+@media only screen and (max-width: 1024px) {
+    /* For mobile phones: */
+    h1{
+        font-size: 24px
+    }
+    h2{
+        font-size: 20px
+    }
+    .fs32{
+        font-size: 24px !important;
+    }
+    .fs24{
+        font-size: 16px !important;
+    }
+    .nav-logo{
+        height: 30px !important;
+    }
+    .flowbox {
+        background: #9CC7FF;
+        width: 180px !important;
+        height: 180px !important;
+        border-radius: 1000px;
+        /* float: left; */
+        text-align: center;
+        /* margin: 5px; */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding: 30px
+      }
+      .ar-for-sample{
+          display: none
+      }
+      .block-display-desktop{
+          /* display: none */
+      }
+      .box-display-phone{
+          display: inline !important;
+      }
+      .card-show-home{
+        width: 100% !important;
+        height: auto;
+      }
+  }
